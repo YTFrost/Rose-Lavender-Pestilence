@@ -13,9 +13,9 @@ dest_files=["res://.godot/imported/character_model.gltf-fe2215a9fcea9b36a1af5dd2
 
 [params]
 
-nodes/root_type=""
-nodes/root_name=""
-nodes/root_script=null
+nodes/root_type="CharacterBody3D"
+nodes/root_name="Character"
+nodes/root_script=Resource("uid://c41n54buicauw", "res://assets/scenes/character/character.gd")
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false

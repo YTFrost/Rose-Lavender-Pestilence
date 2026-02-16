@@ -5,3 +5,5 @@
 [node name="MapTiles" type="Node3D" unique_id=1234648642]
 
 [node name="GrassTile" parent="." unique_id=512238027 instance=ExtResource("1_xrxqd")]
+
+[editable path="GrassTile"]
