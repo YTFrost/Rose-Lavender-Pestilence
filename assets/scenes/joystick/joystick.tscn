@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://csym6cgx1dlae"]
+
+[ext_resource type="Script" uid="uid://cc5yxgbml75sp" path="res://assets/scenes/joystick/joystick.gd" id="1_bfatb"]
+
+[sub_resource type="Gradient" id="Gradient_acv7l"]
+offsets = PackedFloat32Array(0, 0.70481926, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.4862745, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bfatb"]
+gradient = SubResource("Gradient_acv7l")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Gradient" id="Gradient_7pvpf"]
+offsets = PackedFloat32Array(0, 0.72289157, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.43975902, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_noikp"]
+gradient = SubResource("Gradient_7pvpf")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="Joystick" type="Control" unique_id=1428936762]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bfatb")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1640108470]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_bfatb")
+
+[node name="joystick" type="TextureRect" parent="." unique_id=832774306]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_noikp")

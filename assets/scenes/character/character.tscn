@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://8cu2qx4ks302"]
+
+[ext_resource type="PackedScene" uid="uid://bb5cffvm1w4sg" path="res://assets/models/character_model.gltf" id="1_wydkg"]
+
+[node name="Character" unique_id=238064251 instance=ExtResource("1_wydkg")]
+
+[node name="Skeleton3D" parent="character_body" parent_id_path=PackedInt32Array(508081416) index="0" unique_id=2124034048]
+bones/0/position = Vector3(0, 1.090307, 0)
+bones/0/rotation = Quaternion(-0.021814885, 0, 0, 0.999762)
+bones/1/rotation = Quaternion(0, 0.018233355, 0, 0.9998338)
+bones/4/rotation = Quaternion(-0.0064467327, 0.0064467327, -0.7070774, 0.7070774)
+bones/5/rotation = Quaternion(-0.031533264, 0.031533264, -0.7064033, 0.7064033)
+bones/6/rotation = Quaternion(-0.079043075, 0, 0, 0.9968713)
+bones/7/rotation = Quaternion(0.0064467327, 0.0064467327, 0.7070774, 0.7070774)
+bones/8/rotation = Quaternion(0.0064467327, 0.0064467327, 0.7070774, 0.7070774)
+bones/9/rotation = Quaternion(-0.051750954, 0, 0, 0.9986601)
+bones/10/rotation = Quaternion(0.0064467327, -0.0064467327, -0.7070774, 0.7070774)
+bones/11/rotation = Quaternion(0.010360237, -0.010360237, -0.7070309, 0.7070309)
+bones/12/rotation = Quaternion(-0.047067337, 0, 0, 0.9988918)
+bones/13/rotation = Quaternion(-0.0064467327, -0.0064467327, 0.7070774, 0.7070774)
+bones/14/rotation = Quaternion(-0.041190624, -0.041190624, 0.70590603, 0.70590603)
+bones/15/rotation = Quaternion(0.34816635, 0, 0, 0.93743277)

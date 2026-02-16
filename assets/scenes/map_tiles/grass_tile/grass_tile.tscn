@@ -1,0 +1,45 @@
+[gd_scene format=4 uid="uid://cugimd4awwmbb"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5a1ya"]
+load_path = "res://.godot/imported/grass_tile.png-b8b69b34e71fd0f5f02974afa9ed75ab.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x6030"]
+resource_name = "m_5da83104-637d-1f84-dfb6-86095377e59c"
+albedo_texture = SubResource("CompressedTexture2D_5a1ya")
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_vif7w"]
+_surfaces = [{
+"aabb": AABB(-0.5, -0.5, -0.5, 1, 1, 1),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEAAAACAAMAAgABAAQAAQADAAUAAQAFAAQAAwACAAYAAwAGAAUAAgAEAAYABAAFAAcABQAGAAcABgAEAAcA"),
+"name": "m_5da83104-637d-1f84-dfb6-86095377e59c",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("////////AAD/////AAAAAP//AAD//wAAAAD/////AAD//wAAAAAAAAAA//8AAAAAAAAAAP//AAAAAAAAAAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_x6030"]
+_surfaces = [{
+"aabb": AABB(-0.5, -0.5, -0.5, 1, 1, 1),
+"attribute_data": PackedByteArray("AAAAAP8/AAAAAP8//z//P/8//z//P/9/AAD/PwAA/3//f/8//z//P/9/AAD/PwAA/3//P/9//3//P/8//z//f/8//3//P/+/AAD/fwAA/7//fwAA/78AAP9//z//v/8/"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAgABAAMABAAFAAYABgAFAAcACAAJAAoACgAJAAsADAANAA4ADgANAA8AEAARABIAEgARABMAFAAVABYAFgAVABcA"),
+"material": SubResource("StandardMaterial3D_x6030"),
+"name": "m_5da83104-637d-1f84-dfb6-86095377e59c",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("/////////7//////AAD/v///AAD///+///8AAAAA/78AAP//////vwAAAAD///+/AAD//wAA/78AAAAAAAD/v/////////+/AAD//////7//////AAD/vwAA//8AAP+///8AAP///7///wAAAAD/vwAAAAD///+/AAAAAAAA/7////////8AgP//AAD//wCAAAD/////AIAAAAAA//8AgP////8AAP//AAD//wAA/////wAAAAD//wAAAAAAAP///38AAP9/AAD/fwAA/38AAP9/////f////3////9///////9/////f////3////9/AAD/fwAA/38AAP9/AAD/f/9/////f////3////9/////f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_vif7w")
+
+[node name="GrassTile" type="Node3D" unique_id=512238027]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1109180409]
+mesh = SubResource("ArrayMesh_x6030")

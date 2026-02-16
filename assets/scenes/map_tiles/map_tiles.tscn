@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cyuup52aq6ink"]
+
+[ext_resource type="PackedScene" uid="uid://cugimd4awwmbb" path="res://assets/scenes/map_tiles/grass_tile/grass_tile.tscn" id="1_xrxqd"]
+
+[node name="MapTiles" type="Node3D" unique_id=1234648642]
+
+[node name="GrassTile" parent="." unique_id=512238027 instance=ExtResource("1_xrxqd")]
