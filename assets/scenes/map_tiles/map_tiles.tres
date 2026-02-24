@@ -62,20 +62,6 @@ texture_filter = 2
 [sub_resource type="ArrayMesh" id="ArrayMesh_0tduk"]
 _surfaces = [{
 "aabb": AABB(-0.5, -0.5, -0.5, 1, 1, 1),
-"format": 34896613377,
-"index_count": 36,
-"index_data": PackedByteArray("AAABAAIAAAADAAEAAAACAAMAAgABAAQAAQADAAUAAQAFAAQAAwACAAYAAwAGAAUAAgAEAAYABAAFAAcABQAGAAcABgAEAAcA"),
-"name": "m_5da83104-637d-1f84-dfb6-86095377e59c",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 8,
-"vertex_data": PackedByteArray("////////AAD/////AAAAAP//AAD//wAAAAD/////AAD//wAAAAAAAAAA//8AAAAAAAAAAP//AAAAAAAAAAAAAA==")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_870or"]
-_surfaces = [{
-"aabb": AABB(-0.5, -0.5, -0.5, 1, 1, 1),
 "attribute_data": PackedByteArray("AAAAAP8/AAAAAP8//z//P/8//z//P/9/AAD/PwAA/3//f/8//z//P/9/AAD/PwAA/3//P/9//3//P/8//z//f/8//3//P/+/AAD/fwAA/7//fwAA/78AAP9//z//v/8/"),
 "format": 34896613399,
 "index_count": 36,
@@ -88,7 +74,6 @@ _surfaces = [{
 "vertex_data": PackedByteArray("/////////7//////AAD/v///AAD///+///8AAAAA/78AAP//////vwAAAAD///+/AAD//wAA/78AAAAAAAD/v/////////+/AAD//////7//////AAD/vwAA//8AAP+///8AAP///7///wAAAAD/vwAAAAD///+/AAAAAAAA/7////////8AgP//AAD//wCAAAD/////AIAAAAAA//8AgP////8AAP//AAD//wAA/////wAAAAD//wAAAAAAAP///38AAP9/AAD/fwAA/38AAP9/////f////3////9///////9/////f////3////9/AAD/fwAA/38AAP9/AAD/f/9/////f////3////9/////f////3////9/////f///")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_0tduk")
 
 [sub_resource type="Image" id="Image_hct54"]
 data = {
@@ -99,7 +84,7 @@ data = {
 "width": 64
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_o6y4l"]
+[sub_resource type="ImageTexture" id="ImageTexture_xcqce"]
 image = SubResource("Image_hct54")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_5a1ya"]
@@ -115,10 +100,10 @@ item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 
 item/0/navigation_layers = 1
 item/0/preview = SubResource("ImageTexture_0tduk")
 item/1/name = "GrassTile"
-item/1/mesh = SubResource("ArrayMesh_870or")
+item/1/mesh = SubResource("ArrayMesh_0tduk")
 item/1/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/1/mesh_cast_shadow = 1
 item/1/shapes = [SubResource("ConcavePolygonShape3D_5a1ya"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/1/navigation_layers = 1
-item/1/preview = SubResource("ImageTexture_o6y4l")
+item/1/preview = SubResource("ImageTexture_xcqce")

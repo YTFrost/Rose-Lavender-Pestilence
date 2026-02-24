@@ -10,10 +10,13 @@ config_version=5
 
 [application]
 
-config/name="Running Plague Doctor Game"
-run/main_scene="uid://bc86kkxob6caj"
+config/name="Rose, Lavender, Pestilence"
+config/version="Demo release v3.0.0s"
+run/main_scene="uid://bb8ahmp8wyu1u"
 config/features=PackedStringArray("4.6", "Mobile")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
+config/icon="uid://cuicu8dreslm2"
 
 [input]
 
@@ -48,5 +51,7 @@ walk_down={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

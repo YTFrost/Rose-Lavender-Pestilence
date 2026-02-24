@@ -1,0 +1,196 @@
+[gd_scene format=3 uid="uid://0tootl2dihcs"]
+
+[ext_resource type="Script" uid="uid://dgu73uekyikhf" path="res://assets/scenes/main_menu/main_menu.gd" id="1_6o0yw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l732e"]
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_6o0yw"]
+font_size = 22
+
+[sub_resource type="Gradient" id="Gradient_6o0yw"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hx1rq"]
+gradient = SubResource("Gradient_6o0yw")
+
+[sub_resource type="Animation" id="Animation_6o0yw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionTexture:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_hx1rq"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionTexture:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_acsil"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionTexture:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_acsil"]
+_data = {
+&"RESET": SubResource("Animation_6o0yw"),
+&"fade_in": SubResource("Animation_hx1rq"),
+&"fade_out": SubResource("Animation_acsil")
+}
+
+[node name="MainMenu" type="Control" unique_id=2074372682]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6o0yw")
+
+[node name="MainMenuMargin" type="MarginContainer" parent="." unique_id=894286925]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuMargin" unique_id=765023650]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="GameTitle" type="Label" parent="MainMenuMargin/VBoxContainer" unique_id=2060903948]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Rose, Lavender, Pestilence"
+label_settings = SubResource("LabelSettings_l732e")
+
+[node name="StartButton" type="Button" parent="MainMenuMargin/VBoxContainer" unique_id=1928390785]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+text = "Start"
+
+[node name="OptionsButton" type="Button" parent="MainMenuMargin/VBoxContainer" unique_id=1051451120]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="MainMenuMargin/VBoxContainer" unique_id=981739319]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+text = "Quit Game"
+
+[node name="Footnote" type="Label" parent="MainMenuMargin" unique_id=1767078868]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Made by Frost
+Demo release v3.0.0"
+horizontal_alignment = 2
+
+[node name="QuitConfirmationBox" type="PanelContainer" parent="." unique_id=1725018893]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="QuitConfirmationBox" unique_id=1607517733]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="QuitConfirmationBox/MarginContainer" unique_id=1597668790]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="QuitConfirmationBox/MarginContainer/VBoxContainer" unique_id=1504315715]
+layout_mode = 2
+text = "Are you sure you want to quit?"
+label_settings = SubResource("LabelSettings_6o0yw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="QuitConfirmationBox/MarginContainer/VBoxContainer" unique_id=171367628]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="YesButton" type="Button" parent="QuitConfirmationBox/MarginContainer/VBoxContainer/HBoxContainer" unique_id=494024607]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Yes"
+
+[node name="NoButton" type="Button" parent="QuitConfirmationBox/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2032774804]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "No"
+
+[node name="TransitionTexture" type="TextureRect" parent="." unique_id=1214944297]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture1D_hx1rq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1270351712]
+libraries/ = SubResource("AnimationLibrary_acsil")
+
+[connection signal="pressed" from="MainMenuMargin/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="button_down" from="MainMenuMargin/VBoxContainer/QuitButton" to="." method="_on_quit_button_button_down"]
+[connection signal="pressed" from="QuitConfirmationBox/MarginContainer/VBoxContainer/HBoxContainer/YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="QuitConfirmationBox/MarginContainer/VBoxContainer/HBoxContainer/NoButton" to="." method="_on_no_button_pressed"]

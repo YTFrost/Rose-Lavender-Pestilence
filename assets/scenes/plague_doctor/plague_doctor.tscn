@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://c7ct5nhipdqne"]
+
+[ext_resource type="PackedScene" uid="uid://bj3hma1vasukn" path="res://assets/models/plague_doctor/plague_doctor.gltf" id="1_km6cf"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_km6cf"]
+radius = 0.4
+height = 1.8
+
+[node name="PlagueDoctor" unique_id=1631135493 instance=ExtResource("1_km6cf")]
+
+[node name="armature" parent="." index="0" unique_id=1416026914]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Skeleton3D" parent="armature" index="0" unique_id=863516518]
+bones/1/position = Vector3(0.03125, 0.046875, 0)
+bones/1/rotation = Quaternion(0, 0, 0.043619387, 0.99904823)
+bones/2/rotation = Quaternion(0.8342429, -0.20988506, 0.039809205, -0.5083329)
+bones/3/rotation = Quaternion(-0.5037519, 0.18865225, -0.06949527, 0.8401279)
+bones/4/rotation = Quaternion(-0.4304224, 0.24225174, -0.250829, 0.83254755)
+bones/5/rotation = Quaternion(-0.23573467, -0.036686048, -0.068687685, 0.9686926)
+bones/6/rotation = Quaternion(-0.58963156, 0.3064712, -0.1641289, 0.7290211)
+bones/7/rotation = Quaternion(0.77177924, -0.17790267, 0.2662501, 0.54938006)
+bones/8/rotation = Quaternion(0.42727676, -0.31036723, 0.06625357, 0.8465916)
+bones/9/rotation = Quaternion(0.41159543, -0.54212165, -0.34536955, 0.64607537)
+bones/10/rotation = Quaternion(0.252684, 0.056018695, -0.20906462, 0.9430295)
+bones/11/rotation = Quaternion(0.15444651, -0.25851446, -0.537336, 0.78777325)
+bones/12/rotation = Quaternion(0, 0, -0.065403126, 0.99785894)
+bones/15/rotation = Quaternion(0.93001235, -0.023704585, -0.060956232, -0.36166206)
+bones/16/rotation = Quaternion(-0.36243808, 0, 0, 0.9320079)
+bones/17/rotation = Quaternion(-0.0028501293, -0.06527869, 0.046376124, 0.99678475)
+bones/18/rotation = Quaternion(0, 0, -0.7372773, 0.6755902)
+bones/19/rotation = Quaternion(0.95167506, -0.019667102, 0.062376074, 0.300062)
+bones/20/rotation = Quaternion(0.33885095, 0.08931286, 0.009380644, 0.9365443)
+bones/21/rotation = Quaternion(-0.04360901, -0.0028474138, 0.021628255, 0.99881047)
+bones/22/position = Vector3(0, 0.32875, 0)
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=1376694520]
+playback_auto_capture_ease_type = 3
+playback_default_blend_time = 0.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2" unique_id=1147325841]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_km6cf")
+
+[node name="ActionTimer" type="Timer" parent="." index="3" unique_id=833741434]
+wait_time = 0.25
+one_shot = true
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." index="4" unique_id=1570812304]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3.5, 0)
+light_energy = 0.1
+spot_range = 4.0
+spot_angle = 15.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="5" unique_id=426698608]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32772416, 1.1876847, -0.5944346)
+light_color = Color(1, 0.856, 0.64, 1)
+shadow_enabled = true
