@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://fepm1h0igofb"]
+
+[ext_resource type="PackedScene" uid="uid://bxa1848xcbok5" path="res://assets/models/male_character/male_character.gltf" id="1_ubx16"]
+[ext_resource type="Script" uid="uid://dqffngiatxpvv" path="res://assets/scenes/male_character/male_character.gd" id="2_2dv4k"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ubx16"]
+radius = 0.4
+height = 1.8
+
+[node name="MaleCharacter" unique_id=2019152022 instance=ExtResource("1_ubx16")]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("2_2dv4k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2" unique_id=1384363521]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_ubx16")

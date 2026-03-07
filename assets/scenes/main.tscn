@@ -3,19 +3,17 @@
 [ext_resource type="Script" uid="uid://0ueth0layh2l" path="res://assets/scenes/main.gd" id="1_sfrgt"]
 [ext_resource type="Script" uid="uid://cyoyjmupdddnp" path="res://assets/scenes/inventory_label.gd" id="3_xplbd"]
 [ext_resource type="PackedScene" uid="uid://csym6cgx1dlae" path="res://assets/scenes/joystick/joystick.tscn" id="5_etxf0"]
-[ext_resource type="Script" uid="uid://c6lnnowscqnpu" path="res://assets/scenes/pick_up_area.gd" id="5_vesw4"]
-[ext_resource type="Texture2D" uid="uid://dtq3mk6ogi5j" path="res://icon.svg" id="6_vesw4"]
-[ext_resource type="Script" uid="uid://dj88xoauwrejt" path="res://assets/scenes/deposit_area.gd" id="8_6rsl6"]
-[ext_resource type="PackedScene" uid="uid://d055dknkb0k8t" path="res://assets/scenes/map_tiles/generic_land/generic_land.tscn" id="8_48cn3"]
+[ext_resource type="PackedScene" uid="uid://cd478d46ybrbl" path="res://assets/scenes/main_game_world/main_game_world.tscn" id="6_vesw4"]
 [ext_resource type="PackedScene" uid="uid://c7ct5nhipdqne" path="res://assets/scenes/plague_doctor/plague_doctor.tscn" id="8_p5d64"]
+[ext_resource type="PackedScene" uid="uid://fepm1h0igofb" path="res://assets/scenes/male_character/male_character.tscn" id="9_p5d64"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vesw4"]
 font_size = 36
 
 [sub_resource type="Environment" id="Environment_6rsl6"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_vesw4"]
-size = Vector3(4, 2, 8)
+background_mode = 1
+background_color = Color(0.64, 0.80799997, 1, 1)
+background_energy_multiplier = 0.05
 
 [node name="Main" type="Node3D" unique_id=1620234269]
 script = ExtResource("1_sfrgt")
@@ -44,78 +42,21 @@ label_settings = SubResource("LabelSettings_vesw4")
 script = ExtResource("3_xplbd")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1186337627]
-transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 11, 5)
+transform = Transform3D(1, 0, 0, 0, 0.49999994, 0.8660254, 0, -0.8660254, 0.49999994, 0, 9, 5)
 environment = SubResource("Environment_6rsl6")
 
 [node name="GridMap" type="GridMap" parent="." unique_id=220910566]
 cell_size = Vector3(1, 1, 1)
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="PickUpArea" type="Node3D" parent="." unique_id=907854486]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.681399, 2.6345258, 0)
-script = ExtResource("5_vesw4")
+[node name="PlagueDoctor" parent="." unique_id=924241198 node_paths=PackedStringArray("camera_node") instance=ExtResource("8_p5d64")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.046426892, 0)
+camera_node = NodePath("../Camera3D")
 
-[node name="Label3D" type="Label3D" parent="PickUpArea" unique_id=1380138954]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8916218, 0)
-layers = 2
-billboard = 1
-text = "Stand here to
-pick up items"
-font_size = 64
+[node name="MaleCharacter" parent="." unique_id=2019152022 instance=ExtResource("9_p5d64")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0273285, 1.0034971, 7.1229696)
 
-[node name="Decal" type="Decal" parent="PickUpArea" unique_id=924340031]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.060754538, 0)
-size = Vector3(4, 0.021484375, 8)
-texture_albedo = ExtResource("6_vesw4")
-upper_fade = 0.0001
-lower_fade = 0.0001
-cull_mask = 1047553
+[node name="MainGameWorld" parent="." unique_id=464135174 instance=ExtResource("6_vesw4")]
 
-[node name="Area3D" type="Area3D" parent="PickUpArea" unique_id=1072700817]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PickUpArea/Area3D" unique_id=1238419492]
-shape = SubResource("BoxShape3D_vesw4")
-debug_color = Color(0.22610402, 0.37954122, 0.6909109, 1)
-
-[node name="DepositArea" type="Node3D" parent="." unique_id=1236467437]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.755708, 0.6637349, 0)
-script = ExtResource("8_6rsl6")
-
-[node name="Label3D" type="Label3D" parent="DepositArea" unique_id=970389660]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8916218, 0)
-layers = 2
-billboard = 1
-text = "Stand here to
-deposit items"
-font_size = 64
-
-[node name="Decal" type="Decal" parent="DepositArea" unique_id=683338332]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.058495283, 0)
-size = Vector3(4, 0.001, 8)
-texture_albedo = ExtResource("6_vesw4")
-upper_fade = 0.0001
-lower_fade = 0.0001
-cull_mask = 1047553
-
-[node name="Area3D" type="Area3D" parent="DepositArea" unique_id=1015968438]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DepositArea/Area3D" unique_id=2059816326]
-shape = SubResource("BoxShape3D_vesw4")
-debug_color = Color(0.22610402, 0.37954122, 0.6909109, 1)
-
-[node name="PlagueDoctor" parent="." unique_id=924241198 instance=ExtResource("8_p5d64")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4328847, 0)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=56731771]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.848495, 28.05597, 11.841454)
-light_color = Color(0.88, 0.884, 1, 1)
-light_energy = 0.579
-shadow_enabled = true
-
-[node name="blockbench_export" parent="." unique_id=589458987 instance=ExtResource("8_48cn3")]
-
-[connection signal="body_entered" from="PickUpArea/Area3D" to="PickUpArea" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="PickUpArea/Area3D" to="PickUpArea" method="_on_area_3d_body_exited"]
-[connection signal="body_entered" from="DepositArea/Area3D" to="DepositArea" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="DepositArea/Area3D" to="DepositArea" method="_on_area_3d_body_exited"]
 [connection signal="inventory_changed" from="PlagueDoctor" to="InventoryAnchor/InventoryLabel" method="_on_character_inventory_changed"]
+[connection signal="patient_info_requested" from="MaleCharacter" to="." method="_on_male_character_patient_info_requested"]

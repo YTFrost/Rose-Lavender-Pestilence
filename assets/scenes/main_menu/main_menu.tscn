@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://0tootl2dihcs"]
 
 [ext_resource type="Script" uid="uid://dgu73uekyikhf" path="res://assets/scenes/main_menu/main_menu.gd" id="1_6o0yw"]
+[ext_resource type="FontFile" uid="uid://b1a0tnfqy8454" path="res://assets/fonts/hilda_sonnenschein/Hilds___.ttf" id="2_acsil"]
+[ext_resource type="Theme" uid="uid://uyqnrmk4rf4d" path="res://assets/themes/rose_lavender_pestilence_ui.tres" id="2_hx1rq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_l732e"]
-font_size = 48
+font = ExtResource("2_acsil")
+font_size = 100
 
 [sub_resource type="LabelSettings" id="LabelSettings_6o0yw"]
 font_size = 22
@@ -99,26 +102,29 @@ text = "Rose, Lavender, Pestilence"
 label_settings = SubResource("LabelSettings_l732e")
 
 [node name="StartButton" type="Button" parent="MainMenuMargin/VBoxContainer" unique_id=1928390785]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
+theme = ExtResource("2_hx1rq")
 text = "Start"
 
 [node name="OptionsButton" type="Button" parent="MainMenuMargin/VBoxContainer" unique_id=1051451120]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+theme = ExtResource("2_hx1rq")
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="MainMenuMargin/VBoxContainer" unique_id=981739319]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 mouse_default_cursor_shape = 2
+theme = ExtResource("2_hx1rq")
 text = "Quit Game"
 
 [node name="Footnote" type="Label" parent="MainMenuMargin" unique_id=1767078868]

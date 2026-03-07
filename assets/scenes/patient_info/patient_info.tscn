@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://d37hp8pbpsdgp"]
+
+[ext_resource type="Texture2D" uid="uid://cc27c5kxw08yg" path="res://assets/textures/ui/patient_info_notebook/patient_info_notebook.png" id="1_a32t5"]
+[ext_resource type="Script" uid="uid://dr2u06dtmfw5b" path="res://assets/scenes/patient_info/patient_info.gd" id="1_id8sx"]
+[ext_resource type="FontFile" uid="uid://bbejlad3e7kf3" path="res://assets/fonts/phitaradesign_handrwritten/phitradesign Handwritten Thin.ttf" id="3_8sjqv"]
+[ext_resource type="Texture2D" uid="uid://btk1nr4g37mtp" path="res://assets/textures/ui/button_close/normal.png" id="4_xwd1m"]
+[ext_resource type="Texture2D" uid="uid://maleh4igdpg8" path="res://assets/textures/ui/button_close/pressed.svg" id="5_32pke"]
+[ext_resource type="Texture2D" uid="uid://udijs8oac51x" path="res://assets/textures/ui/button_close/hover.png" id="6_1nwfa"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8j4h2"]
+font = ExtResource("3_8sjqv")
+font_size = 52
+font_color = Color(0.1, 0.1, 0.1, 1)
+
+[node name="PatientInfoContainer" type="Control" unique_id=1787579219]
+layout_mode = 3
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_id8sx")
+
+[node name="ContainerBackground" type="TextureRect" parent="." unique_id=1602971728]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_a32t5")
+expand_mode = 5
+stretch_mode = 2
+
+[node name="ContentContainer" type="Control" parent="ContainerBackground" unique_id=1353594141]
+layout_mode = 1
+anchor_left = 0.075
+anchor_top = 0.05
+anchor_right = 0.825
+anchor_bottom = 0.925
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="Label" parent="ContainerBackground/ContentContainer" unique_id=2058044355]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Name Surname"
+label_settings = SubResource("LabelSettings_8j4h2")
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=2141530883]
+layout_mode = 1
+offset_left = -128.0
+offset_bottom = 128.0
+texture_normal = ExtResource("4_xwd1m")
+texture_pressed = ExtResource("5_32pke")
+texture_hover = ExtResource("6_1nwfa")

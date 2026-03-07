@@ -6,9 +6,11 @@ var heading := Vector3.FORWARD;
 var item_count := 0;
 @export var walk_speed := 8;
 @export var rotate_speed := 3*PI;
+@export var camera_node : Camera3D = null;
 @onready var animation_player : AnimationPlayer = $AnimationPlayer;
 
 func _process(delta: float) -> void:
+	if(camera_node != null): camera_node.position = position + Vector3(0, 9, 5);
 	var flat_heading = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down", 0.2);
 	heading = Vector3(flat_heading.x, 0.0, flat_heading.y);
 	if(flat_heading != Vector2.ZERO):
@@ -44,3 +46,9 @@ func take_item() -> void:
 	item_count -= 1;
 	$ActionTimer.start();
 	inventory_changed.emit(item_count);
+
+func _on_interaction_area_body_entered(body: Node3D) -> void:
+	if(body.get("type") == Character.PATIENT): body.show_info_button(self);
+
+func _on_interaction_area_body_exited(body: Node3D) -> void:
+	if(body.get("type") == Character.PATIENT): body.hide_info_button(self);

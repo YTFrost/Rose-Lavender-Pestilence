@@ -6,6 +6,10 @@
 radius = 0.4
 height = 1.8
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_km6cf"]
+height = 5.0
+radius = 4.0
+
 [node name="PlagueDoctor" unique_id=1631135493 instance=ExtResource("1_km6cf")]
 
 [node name="armature" parent="." index="0" unique_id=1416026914]
@@ -46,13 +50,25 @@ shape = SubResource("CapsuleShape3D_km6cf")
 wait_time = 0.25
 one_shot = true
 
-[node name="SpotLight3D" type="SpotLight3D" parent="." index="4" unique_id=1570812304]
+[node name="AmbientSpotlight" type="SpotLight3D" parent="." index="4" unique_id=1570812304]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3.5, 0)
-light_energy = 0.1
-spot_range = 4.0
-spot_angle = 15.0
+light_energy = 0.25
+spot_attenuation = 0.1
+spot_angle = 33.0
 
-[node name="OmniLight3D" type="OmniLight3D" parent="." index="5" unique_id=426698608]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32772416, 1.1876847, -0.5944346)
+[node name="TorchLight" type="OmniLight3D" parent="." index="5" unique_id=426698608]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32772416, 1.7046255, -1.0139462)
 light_color = Color(1, 0.856, 0.64, 1)
+light_size = 0.2
 shadow_enabled = true
+omni_range = 12.5
+omni_attenuation = 0.5
+
+[node name="InteractionArea" type="Area3D" parent="." index="6" unique_id=1618510191]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea" index="0" unique_id=1601236965]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_km6cf")
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]

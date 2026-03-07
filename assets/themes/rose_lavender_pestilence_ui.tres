@@ -1,0 +1,18 @@
+[gd_resource type="Theme" format=3 uid="uid://uyqnrmk4rf4d"]
+
+[ext_resource type="FontFile" uid="uid://b1a0tnfqy8454" path="res://assets/fonts/hilda_sonnenschein/Hilds___.ttf" id="1_rh734"]
+[ext_resource type="Texture2D" uid="uid://ciop27i002h74" path="res://assets/textures/ui/button.png" id="2_rh734"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rh734"]
+texture = ExtResource("2_rh734")
+texture_margin_left = 25.0
+texture_margin_top = 37.0
+texture_margin_right = 25.0
+texture_margin_bottom = 37.0
+axis_stretch_vertical = 1
+
+[resource]
+Button/colors/font_color = Color(0.80049086, 0.8004908, 0.8004906, 1)
+Button/font_sizes/font_size = 46
+Button/fonts/font = ExtResource("1_rh734")
+Button/styles/normal = SubResource("StyleBoxTexture_rh734")
