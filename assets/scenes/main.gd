@@ -9,3 +9,4 @@ func show_patient_info(patient: RigidBody3D) -> void:
 	add_child(patient_info_instance);
 	patient_info_instance.slide_in();
 	patient_info_instance.load_patient_info(patient);
+	patient.patient_info_updated.connect(patient_info_instance.load_patient_info);

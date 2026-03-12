@@ -3,55 +3,205 @@
 [ext_resource type="Texture2D" uid="uid://cc27c5kxw08yg" path="res://assets/textures/ui/patient_info_notebook/patient_info_notebook.png" id="1_a32t5"]
 [ext_resource type="Script" uid="uid://dr2u06dtmfw5b" path="res://assets/scenes/patient_info/patient_info.gd" id="1_id8sx"]
 [ext_resource type="FontFile" uid="uid://bbejlad3e7kf3" path="res://assets/fonts/phitaradesign_handrwritten/phitradesign Handwritten Thin.ttf" id="3_8sjqv"]
-[ext_resource type="Texture2D" uid="uid://btk1nr4g37mtp" path="res://assets/textures/ui/button_close/normal.png" id="4_xwd1m"]
-[ext_resource type="Texture2D" uid="uid://maleh4igdpg8" path="res://assets/textures/ui/button_close/pressed.svg" id="5_32pke"]
-[ext_resource type="Texture2D" uid="uid://udijs8oac51x" path="res://assets/textures/ui/button_close/hover.png" id="6_1nwfa"]
+[ext_resource type="Texture2D" uid="uid://dw2aovsfbmb70" path="res://assets/textures/ui/button_close/close_normal.png" id="4_xwd1m"]
+[ext_resource type="Texture2D" uid="uid://81dfqmr34hy0" path="res://assets/textures/ui/button_close/close_pressed.png" id="5_32pke"]
+[ext_resource type="Texture2D" uid="uid://dltcvpr3asbgh" path="res://assets/textures/ui/button_close/close_hover.png" id="6_1nwfa"]
+[ext_resource type="PackedScene" uid="uid://cibkhyvhr1lec" path="res://assets/scenes/patient_info/health_bar/health_bar.tscn" id="7_1nwfa"]
+[ext_resource type="FontFile" uid="uid://vt6vxa0bs2xb" path="res://assets/fonts/aquifer/Aquifer.otf" id="7_32pke"]
+[ext_resource type="FontFile" uid="uid://b1a0tnfqy8454" path="res://assets/fonts/hilda_sonnenschein/Hilds___.ttf" id="9_u65tt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8j4h2"]
 font = ExtResource("3_8sjqv")
 font_size = 52
 font_color = Color(0.1, 0.1, 0.1, 1)
 
-[node name="PatientInfoContainer" type="Control" unique_id=1787579219]
+[sub_resource type="LabelSettings" id="LabelSettings_1nwfa"]
+font = ExtResource("7_32pke")
+font_size = 40
+font_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_32pke"]
+font = ExtResource("3_8sjqv")
+font_size = 32
+font_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ip3um"]
+font = ExtResource("9_u65tt")
+font_size = 64
+font_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bsoew"]
+font = ExtResource("9_u65tt")
+font_size = 64
+font_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_u65tt"]
+font = ExtResource("3_8sjqv")
+font_size = 42
+font_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+
+[node name="PatientInfoMenu" type="Control" unique_id=1787579219]
 layout_mode = 3
-anchor_left = 0.5
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_id8sx")
 
-[node name="ContainerBackground" type="TextureRect" parent="." unique_id=1602971728]
+[node name="CloseArea" type="Button" parent="." unique_id=1979240916]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_a32t5")
-expand_mode = 5
-stretch_mode = 2
 
-[node name="ContentContainer" type="Control" parent="ContainerBackground" unique_id=1353594141]
+[node name="NotebookContainer" type="Control" parent="." unique_id=1176350821]
 layout_mode = 1
-anchor_left = 0.075
-anchor_top = 0.05
-anchor_right = 0.825
-anchor_bottom = 0.925
-grow_horizontal = 2
-grow_vertical = 2
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
 
-[node name="Name" type="Label" parent="ContainerBackground/ContentContainer" unique_id=2058044355]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Name Surname"
-label_settings = SubResource("LabelSettings_8j4h2")
-
-[node name="TextureButton" type="TextureButton" parent="." unique_id=2141530883]
+[node name="CloseButton" type="TextureButton" parent="NotebookContainer" unique_id=230189695]
 layout_mode = 1
 offset_left = -128.0
 offset_bottom = 128.0
 texture_normal = ExtResource("4_xwd1m")
 texture_pressed = ExtResource("5_32pke")
 texture_hover = ExtResource("6_1nwfa")
+
+[node name="ContainerBackground" type="TextureRect" parent="NotebookContainer" unique_id=1602971728]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 715.7223
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_a32t5")
+expand_mode = 3
+stretch_mode = 6
+
+[node name="ContentMargins" type="MarginContainer" parent="NotebookContainer" unique_id=994480385]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 40
+
+[node name="VerticalContentSorter" type="VBoxContainer" parent="NotebookContainer/ContentMargins" unique_id=822578108]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="NotebookContainer/ContentMargins/VerticalContentSorter" unique_id=2058044355]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Name Surname"
+label_settings = SubResource("LabelSettings_8j4h2")
+
+[node name="HealthBar" parent="NotebookContainer/ContentMargins/VerticalContentSorter" unique_id=1864273301 instance=ExtResource("7_1nwfa")]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="QualitiesSorter" type="HBoxContainer" parent="NotebookContainer/ContentMargins/VerticalContentSorter" unique_id=506842107]
+layout_mode = 2
+
+[node name="TemperatureSorter" type="VBoxContainer" parent="NotebookContainer/ContentMargins/VerticalContentSorter/QualitiesSorter" unique_id=515575581]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TemperatureLabel" type="Label" parent="NotebookContainer/ContentMargins/VerticalContentSorter/QualitiesSorter/TemperatureSorter" unique_id=247423953]
+layout_mode = 2
+text = "Temperature:"
+label_settings = SubResource("LabelSettings_1nwfa")
+
+[node name="Temperature" type="Label" parent="NotebookContainer/ContentMargins/VerticalContentSorter/QualitiesSorter/TemperatureSorter" unique_id=174822743]
+layout_mode = 2
+text = "TEMPERATURE"
+label_settings = SubResource("LabelSettings_32pke")
+
+[node name="MoistureSorter" type="VBoxContainer" parent="NotebookContainer/ContentMargins/VerticalContentSorter/QualitiesSorter" unique_id=1853794962]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MoistureLabel" type="Label" parent="NotebookContainer/ContentMargins/VerticalContentSorter/QualitiesSorter/MoistureSorter" unique_id=1889894062]
+layout_mode = 2
+text = "Moisture:"
+label_settings = SubResource("LabelSettings_1nwfa")
+
+[node name="Moisture" type="Label" parent="NotebookContainer/ContentMargins/VerticalContentSorter/QualitiesSorter/MoistureSorter" unique_id=683538810]
+layout_mode = 2
+text = "MOISTURE"
+label_settings = SubResource("LabelSettings_32pke")
+
+[node name="HSeparator" type="HSeparator" parent="NotebookContainer/ContentMargins/VerticalContentSorter" unique_id=1900335267]
+layout_mode = 2
+
+[node name="Debug" type="Label" parent="NotebookContainer/ContentMargins/VerticalContentSorter" unique_id=1902242504]
+layout_mode = 2
+text = "Debug"
+label_settings = SubResource("LabelSettings_ip3um")
+
+[node name="BloodContainer" type="HBoxContainer" parent="NotebookContainer/ContentMargins/VerticalContentSorter" unique_id=274500861]
+layout_mode = 2
+
+[node name="BloodLabel" type="Label" parent="NotebookContainer/ContentMargins/VerticalContentSorter/BloodContainer" unique_id=412648431]
+layout_mode = 2
+text = "Blood:"
+label_settings = SubResource("LabelSettings_bsoew")
+
+[node name="Blood" type="Label" parent="NotebookContainer/ContentMargins/VerticalContentSorter/BloodContainer" unique_id=717629478]
+layout_mode = 2
+text = "25"
+label_settings = SubResource("LabelSettings_u65tt")
+
+[node name="PhlegmContainer" type="HBoxContainer" parent="NotebookContainer/ContentMargins/VerticalContentSorter" unique_id=808001582]
+layout_mode = 2
+
+[node name="PhlegmLabel" type="Label" parent="NotebookContainer/ContentMargins/VerticalContentSorter/PhlegmContainer" unique_id=410807245]
+layout_mode = 2
+text = "Phlegm:"
+label_settings = SubResource("LabelSettings_bsoew")
+
+[node name="Phlegm" type="Label" parent="NotebookContainer/ContentMargins/VerticalContentSorter/PhlegmContainer" unique_id=1016701947]
+layout_mode = 2
+text = "25"
+label_settings = SubResource("LabelSettings_u65tt")
+
+[node name="GallContainer" type="HBoxContainer" parent="NotebookContainer/ContentMargins/VerticalContentSorter" unique_id=1482982536]
+layout_mode = 2
+
+[node name="GallLabel" type="Label" parent="NotebookContainer/ContentMargins/VerticalContentSorter/GallContainer" unique_id=1244881662]
+layout_mode = 2
+text = "Gall:"
+label_settings = SubResource("LabelSettings_bsoew")
+
+[node name="Gall" type="Label" parent="NotebookContainer/ContentMargins/VerticalContentSorter/GallContainer" unique_id=1143511768]
+layout_mode = 2
+text = "25"
+label_settings = SubResource("LabelSettings_u65tt")
+
+[node name="MelancholyContainer" type="HBoxContainer" parent="NotebookContainer/ContentMargins/VerticalContentSorter" unique_id=1705260823]
+layout_mode = 2
+
+[node name="MelancholyLabel" type="Label" parent="NotebookContainer/ContentMargins/VerticalContentSorter/MelancholyContainer" unique_id=1098565882]
+layout_mode = 2
+text = "Melancholy:"
+label_settings = SubResource("LabelSettings_bsoew")
+
+[node name="Melancholy" type="Label" parent="NotebookContainer/ContentMargins/VerticalContentSorter/MelancholyContainer" unique_id=456715042]
+layout_mode = 2
+text = "25"
+label_settings = SubResource("LabelSettings_u65tt")
+
+[connection signal="pressed" from="CloseArea" to="." method="_on_close_area_pressed"]
+[connection signal="pressed" from="NotebookContainer/CloseButton" to="." method="_on_close_button_pressed"]

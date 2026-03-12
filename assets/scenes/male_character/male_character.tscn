@@ -16,3 +16,9 @@ script = ExtResource("2_2dv4k")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2" unique_id=1384363521]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_ubx16")
+
+[node name="UpdateTimer" type="Timer" parent="." index="3" unique_id=1424154062]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="UpdateTimer" to="." method="_on_update_timer_timeout"]

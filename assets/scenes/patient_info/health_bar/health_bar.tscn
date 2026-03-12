@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cibkhyvhr1lec"]
+
+[ext_resource type="Texture2D" uid="uid://c0qk1ok81c0bm" path="res://assets/textures/ui/patient_info_notebook/health_bar/patient_health_bar_empty.png" id="1_42d6g"]
+[ext_resource type="Texture2D" uid="uid://bvxlkhosfcdt" path="res://assets/textures/ui/patient_info_notebook/health_bar/patient_health_bar_full.png" id="2_wutvq"]
+[ext_resource type="Script" uid="uid://djtnblj32mdi3" path="res://assets/scenes/patient_info/health_bar/full.gd" id="3_wutvq"]
+
+[node name="HealthBar" type="Control" unique_id=1864273301]
+custom_minimum_size = Vector2(100, 10)
+layout_mode = 3
+offset_right = 500.0
+offset_bottom = 50.0
+
+[node name="Empty" type="TextureRect" parent="." unique_id=1415461787]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_42d6g")
+expand_mode = 3
+
+[node name="Full" type="TextureRect" parent="." unique_id=94648231]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wutvq")
+expand_mode = 2
+stretch_mode = 6
+script = ExtResource("3_wutvq")

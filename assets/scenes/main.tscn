@@ -55,6 +55,8 @@ camera_node = NodePath("../Camera3D")
 
 [node name="MaleCharacter" parent="." unique_id=2019152022 instance=ExtResource("9_p5d64")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0273285, 1.0034971, 7.1229696)
+temperature = 50.0
+moisture = 25.0
 
 [node name="MainGameWorld" parent="." unique_id=464135174 instance=ExtResource("6_vesw4")]
 
