@@ -27,10 +27,16 @@ func load_patient_info(patient: RigidBody3D) -> void:
 	$NotebookContainer/ContentMargins/VerticalContentSorter/QualitiesSorter/TemperatureSorter/Temperature.text = get_temperature_desc(patient.temperature);
 	$NotebookContainer/ContentMargins/VerticalContentSorter/QualitiesSorter/MoistureSorter/Moisture.text = get_moisture_desc(patient.moisture);
 	$NotebookContainer/ContentMargins/VerticalContentSorter/HealthBar/Full.size.x = 500 * (patient.life/100);
-	$NotebookContainer/ContentMargins/VerticalContentSorter/BloodContainer/Blood.text = "%f" % patient.blood;
-	$NotebookContainer/ContentMargins/VerticalContentSorter/PhlegmContainer/Phlegm.text = "%f" % patient.phlegm;
-	$NotebookContainer/ContentMargins/VerticalContentSorter/GallContainer/Gall.text = "%f" % patient.gall;
-	$NotebookContainer/ContentMargins/VerticalContentSorter/MelancholyContainer/Melancholy.text = "%f" % patient.melancholy;
+	$NotebookContainer/ContentMargins/VerticalContentSorter/BloodContainer/Blood.text = "%f" % patient.blood.level;
+	$NotebookContainer/ContentMargins/VerticalContentSorter/PhlegmContainer/Phlegm.text = "%f" % patient.phlegm.level;
+	$NotebookContainer/ContentMargins/VerticalContentSorter/GallContainer/Gall.text = "%f" % patient.gall.level;
+	$NotebookContainer/ContentMargins/VerticalContentSorter/MelancholyContainer/Melancholy.text = "%f" % patient.melancholy.level;
+	if(patient.afflictions.size() == 0): $NotebookContainer/ContentMargins/VerticalContentSorter/Afflictions.text = "None";
+	else:
+		var affliction_names := [];
+		for affliction in patient.afflictions:
+			affliction_names.append(affliction.get_name());
+		$NotebookContainer/ContentMargins/VerticalContentSorter/Afflictions.text = ", ".join(affliction_names);
 
 func get_temperature_desc(temperature: float) -> String:
 	if(90 < temperature): return TEMP_DESCS[6];

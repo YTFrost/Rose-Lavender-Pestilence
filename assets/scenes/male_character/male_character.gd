@@ -10,10 +10,10 @@ const MAX_SWING := 2.0;
 @export var life := 100.0;
 @export var temperature := 0.0;
 @export var moisture := 0.0;
-@export var blood := 25.0;
-@export var phlegm := 25.0;
-@export var gall := 25.0;
-@export var melancholy := 25.0;
+@export var blood : HumorState = HumorState.new(HumorState.Type.BLOOD);
+@export var gall : HumorState = HumorState.new(HumorState.Type.GALL);
+@export var phlegm : HumorState = HumorState.new(HumorState.Type.PHLEGM);
+@export var melancholy : HumorState = HumorState.new(HumorState.Type.MELANCHOLY);
 @export var afflictions : Array = [];
 var type := Character.PATIENT;
 var button : Control = null;
@@ -29,49 +29,50 @@ func show_info_button(new_doctor):
 	button = button_instance;
 	doctor = new_doctor;
 
-func hide_info_button(new_doctor):
+func hide_info_button(_new_doctor):
 	button.queue_free();
 	button = null;
 
-func on_button_pressed(button: Control):
+func on_button_pressed(_new_button: Control):
 	patient_info_requested.emit(self);
 
 func _on_update_timer_timeout() -> void:
 	var heat_delta = (temperature / 100.0) * MAX_SWING
 	var moist_delta = (moisture / 100.0) * MAX_SWING
 
-	# Apply heat influence
-	blood += heat_delta
-	gall += heat_delta
-	phlegm -= heat_delta
-	melancholy -= heat_delta
-
-	# Apply moisture influence
-	blood += moist_delta
-	gall -= moist_delta
-	phlegm += moist_delta
-	melancholy -= moist_delta
-
-	# Prevent negative humors
-	blood = max(blood, 0.0)
-	gall = max(gall, 0.0)
-	phlegm = max(phlegm, 0.0)
-	melancholy = max(melancholy, 0.0)
-
-	# Normalize so total = 100
-	var total = blood + gall + phlegm + melancholy
-	if total > 0.0:
-		var scale = 100.0 / total
-		blood *= scale
-		gall *= scale
-		phlegm *= scale
-		melancholy *= scale
-
-	# Dampen qualities
+	apply_temp_mod(heat_delta);
+	apply_moist_mod(moist_delta);
+	normalize_humors();
+	update_afflictions();
+	
 	temperature *= 0.98
 	moisture *= 0.98
 	
 	patient_info_updated.emit(self);
 
+func apply_temp_mod(delta: float) -> void:
+	blood.level += delta;
+	gall.level += delta;
+	phlegm.level -= delta;
+	melancholy.level -= delta;
+
+func apply_moist_mod(delta: float) -> void:
+	blood.level += delta;
+	phlegm.level += delta;
+	gall.level -= delta;
+	melancholy.level -= delta;
+
+func normalize_humors() -> void:
+	var total_humors := blood.level + phlegm.level + gall.level + melancholy.level;
+	if( abs( 100.0 - total_humors ) > 0.01 ):
+		blood.level = ( blood.level / total_humors ) * 100.0;
+		phlegm.level = ( phlegm.level / total_humors ) * 100.0;
+		gall.level = ( gall.level / total_humors ) * 100.0;
+		melancholy.level = ( melancholy.level / total_humors ) * 100.0;
+
 func update_afflictions() -> void:
-	pass;
+	blood.update_afflictions();
+	gall.update_afflictions();
+	phlegm.update_afflictions();
+	melancholy.update_afflictions();
+	afflictions = blood.afflictions + gall.afflictions + phlegm.afflictions + melancholy.afflictions;

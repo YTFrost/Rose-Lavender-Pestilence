@@ -143,6 +143,16 @@ layout_mode = 2
 text = "MOISTURE"
 label_settings = SubResource("LabelSettings_32pke")
 
+[node name="AfflictionsLabel" type="Label" parent="NotebookContainer/ContentMargins/VerticalContentSorter" unique_id=1928918224]
+layout_mode = 2
+text = "Afflictions:"
+label_settings = SubResource("LabelSettings_1nwfa")
+
+[node name="Afflictions" type="Label" parent="NotebookContainer/ContentMargins/VerticalContentSorter" unique_id=1643055925]
+layout_mode = 2
+text = "None"
+label_settings = SubResource("LabelSettings_32pke")
+
 [node name="HSeparator" type="HSeparator" parent="NotebookContainer/ContentMargins/VerticalContentSorter" unique_id=1900335267]
 layout_mode = 2
 
