@@ -20,7 +20,7 @@ const MOIST_DESCS = [
 ];
 
 func _enter_tree() -> void:
-	$NotebookContainer/ContainerBackground.grow_horizontal = GROW_DIRECTION_END
+	$AnimationPlayer.play("slide_in", -1, 4.0);
 
 func load_patient_info(patient: RigidBody3D) -> void:
 	$NotebookContainer/ContentMargins/VerticalContentSorter/Name.text = "%s %s" % [patient.patient_name, patient.patient_surname];
@@ -35,7 +35,7 @@ func load_patient_info(patient: RigidBody3D) -> void:
 	else:
 		var affliction_names := [];
 		for affliction in patient.afflictions:
-			affliction_names.append(affliction.get_name());
+			affliction_names.append(affliction.name);
 		$NotebookContainer/ContentMargins/VerticalContentSorter/Afflictions.text = ", ".join(affliction_names);
 
 func get_temperature_desc(temperature: float) -> String:
@@ -56,22 +56,11 @@ func get_moisture_desc(moisture: float) -> String:
 	elif(-90 < moisture): return MOIST_DESCS[1];
 	else: return MOIST_DESCS[0];
 
-func slide_in() -> void:
-	anchor_left = 1.0;
-	var tween := get_tree().create_tween();
-	tween.tween_property(self, "anchor_left", 0.0, 0.25);
-	tween.set_trans(Tween.TRANS_CIRC);
-	tween.set_ease(Tween.EASE_IN_OUT);
-
-func slide_out() -> void:
-	var tween := get_tree().create_tween();
-	tween.tween_property(self, "anchor_left", 1.0, 0.25);
-	tween.tween_callback(queue_free);
-	tween.set_trans(Tween.TRANS_CIRC);
-	tween.set_ease(Tween.EASE_IN_OUT);
-
 func _on_close_button_pressed() -> void:
-	slide_out();
+	$AnimationPlayer.play("slide_out", -1, 4.0);
 
 func _on_close_area_pressed() -> void:
-	slide_out();
+	$AnimationPlayer.play("slide_out", -1, 4.0);
+
+func _on_animation_player_animation_finished(anim_name: String):
+	if(anim_name == "slide_out"): queue_free();

@@ -4,6 +4,12 @@ signal patient_info_requested(patient: RigidBody3D);
 signal patient_info_updated(patient: RigidBody3D);
 
 const MAX_SWING := 2.0;
+const MAX_WANDER_DISTANCE := 20.0;
+
+enum State {
+	IDLE,
+	WANDERING
+}
 
 @export var patient_name := "Mirosław";
 @export var patient_surname := "Zimoch";
@@ -15,9 +21,28 @@ const MAX_SWING := 2.0;
 @export var phlegm : HumorState = HumorState.new(HumorState.Type.PHLEGM);
 @export var melancholy : HumorState = HumorState.new(HumorState.Type.MELANCHOLY);
 @export var afflictions : Array = [];
+@export var walk_speed := 3.0;
 var type := Character.PATIENT;
 var button : Control = null;
 var doctor : CharacterBody3D = null;
+var state := State.IDLE;
+var wander_target : Vector3 = position;
+
+func _process(delta):
+	if(state == State.IDLE): $AnimationPlayer.play("idle");
+	elif(state == State.WANDERING): $AnimationPlayer.play("walk_healthy");
+	$NavigationTargetMarker.global_position = $NavigationAgent3D.target_position;
+
+func _physics_process(delta):
+	if(state == State.WANDERING):
+		var current_agent_position: Vector3 = global_position
+		var next_path_position: Vector3 = $NavigationAgent3D.get_next_path_position();
+		
+		linear_velocity = current_agent_position.direction_to(next_path_position) * walk_speed;
+		var target_rotation = -linear_velocity.signed_angle_to(Vector3.FORWARD, Vector3.UP);
+		rotation.y += (target_rotation - rotation.y) * 0.1;
+	if(state == State.IDLE):
+		linear_velocity = Vector3.ZERO;
 
 func show_info_button(new_doctor):
 	var button_scene := load("res://assets/scenes/button_patient/button_patient.tscn");
@@ -76,3 +101,15 @@ func update_afflictions() -> void:
 	phlegm.update_afflictions();
 	melancholy.update_afflictions();
 	afflictions = blood.afflictions + gall.afflictions + phlegm.afflictions + melancholy.afflictions;
+
+func _on_state_timer_timeout():
+	var wander_target = Vector3(
+		position.x + randf_range(-MAX_WANDER_DISTANCE, MAX_WANDER_DISTANCE),
+		position.y,
+		position.z + randf_range(-MAX_WANDER_DISTANCE, MAX_WANDER_DISTANCE)
+	)
+	state = State.WANDERING;
+	$NavigationAgent3D.set_target_position(wander_target);
+
+func _on_navigation_agent_3d_target_reached():
+	state = State.IDLE;

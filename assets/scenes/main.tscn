@@ -1,22 +1,28 @@
 [gd_scene format=3 uid="uid://bc86kkxob6caj"]
 
 [ext_resource type="Script" uid="uid://0ueth0layh2l" path="res://assets/scenes/main.gd" id="1_sfrgt"]
-[ext_resource type="Script" uid="uid://cyoyjmupdddnp" path="res://assets/scenes/inventory_label.gd" id="3_xplbd"]
+[ext_resource type="PackedScene" uid="uid://wukfmipwg04s" path="res://assets/scenes/time_ui/time_ui.tscn" id="3_vesw4"]
 [ext_resource type="PackedScene" uid="uid://csym6cgx1dlae" path="res://assets/scenes/joystick/joystick.tscn" id="5_etxf0"]
-[ext_resource type="PackedScene" uid="uid://cd478d46ybrbl" path="res://assets/scenes/main_game_world/main_game_world.tscn" id="6_vesw4"]
+[ext_resource type="PackedScene" uid="uid://blqfabvubkg2d" path="res://assets/scenes/main_game_world/main_game_world.tscn" id="6_vesw4"]
+[ext_resource type="PackedScene" uid="uid://dvvfoypybm0hh" path="res://assets/scenes/bed/bed.tscn" id="7_xplbd"]
 [ext_resource type="PackedScene" uid="uid://c7ct5nhipdqne" path="res://assets/scenes/plague_doctor/plague_doctor.tscn" id="8_p5d64"]
 [ext_resource type="PackedScene" uid="uid://fepm1h0igofb" path="res://assets/scenes/male_character/male_character.tscn" id="9_p5d64"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_vesw4"]
-font_size = 36
-
 [sub_resource type="Environment" id="Environment_6rsl6"]
-background_mode = 1
-background_color = Color(0.64, 0.80799997, 1, 1)
-background_energy_multiplier = 0.05
+background_color = Color(1, 1, 1, 1)
+background_energy_multiplier = 0.0
+fog_enabled = true
+fog_light_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Curve" id="Curve_xplbd"]
+_limits = [0.0, 1.0, 0.0, 6.0]
+_data = [Vector2(0.013605446, 1), 0.0, 0.0, 0, 0, Vector2(6, 0), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Main" type="Node3D" unique_id=1620234269]
 script = ExtResource("1_sfrgt")
+
+[node name="TimeUi" parent="." unique_id=1290086711 instance=ExtResource("3_vesw4")]
 
 [node name="Joystick" parent="." unique_id=1428936762 instance=ExtResource("5_etxf0")]
 anchors_preset = -1
@@ -27,37 +33,41 @@ anchor_bottom = 0.9
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="InventoryAnchor" type="Control" parent="." unique_id=1304404269]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="InventoryLabel" type="Label" parent="InventoryAnchor" unique_id=1711547853]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Held items: 0"
-label_settings = SubResource("LabelSettings_vesw4")
-script = ExtResource("3_xplbd")
-
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1186337627]
 transform = Transform3D(1, 0, 0, 0, 0.49999994, 0.8660254, 0, -0.8660254, 0.49999994, 0, 9, 5)
 environment = SubResource("Environment_6rsl6")
-
-[node name="GridMap" type="GridMap" parent="." unique_id=220910566]
-cell_size = Vector3(1, 1, 1)
-metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="PlagueDoctor" parent="." unique_id=924241198 node_paths=PackedStringArray("camera_node") instance=ExtResource("8_p5d64")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.046426892, 0)
 camera_node = NodePath("../Camera3D")
 
-[node name="MainGameWorld" parent="." unique_id=464135174 instance=ExtResource("6_vesw4")]
+[node name="MainGameWorld" parent="." unique_id=2134989636 instance=ExtResource("6_vesw4")]
 
 [node name="MaleCharacter" parent="." unique_id=2019152022 instance=ExtResource("9_p5d64")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7492571, 0.015878633, 1.3124499)
 temperature = 50.0
+moisture = 35.0
 
-[connection signal="inventory_changed" from="PlagueDoctor" to="InventoryAnchor/InventoryLabel" method="_on_character_inventory_changed"]
+[node name="Sunlight" type="DirectionalLight3D" parent="." unique_id=2058599549]
+transform = Transform3D(0.70710677, 0.579228, -0.4055798, 0, 0.57357645, 0.81915206, 0.70710677, -0.579228, 0.4055798, 0, 0, 0)
+light_color = Color(0.96908027, 0.8781061, 0.7322988, 1)
+shadow_enabled = true
+shadow_blur = 3.0
+
+[node name="Moonlight" type="DirectionalLight3D" parent="." unique_id=875921989]
+transform = Transform3D(0.17364822, 0.96984625, -0.1710101, 0, 0.17364822, 0.9848077, 0.9848077, -0.1710101, 0.030153705, 0, 0, 0)
+visible = false
+light_color = Color(0.16339943, 0.36320502, 0.4462511, 1)
+light_energy = 0.15
+shadow_enabled = true
+
+[node name="WorldTimer" type="Timer" parent="." unique_id=2018629126]
+autostart = true
+
+[node name="Bed" parent="." unique_id=2003784911 node_paths=PackedStringArray("player_character") instance=ExtResource("7_xplbd")]
+transform = Transform3D(-0.9606449, -0.10858027, 0.25567883, -0.10442432, 0.9940858, 0.029816357, -0.2574041, 0.0019438509, -0.96630186, 2.3039005, 0.25387752, -4.807809)
+player_character = NodePath("../PlagueDoctor")
+alpha_curve = SubResource("Curve_xplbd")
+
 [connection signal="patient_info_requested" from="MaleCharacter" to="." method="_on_male_character_patient_info_requested"]
+[connection signal="timeout" from="WorldTimer" to="." method="_on_world_timer_timeout"]
