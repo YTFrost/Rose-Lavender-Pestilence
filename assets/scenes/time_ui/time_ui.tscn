@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://wukfmipwg04s"]
+
+[ext_resource type="FontFile" uid="uid://b1a0tnfqy8454" path="res://assets/fonts/hilda_sonnenschein/Hilds___.ttf" id="1_ddso5"]
+[ext_resource type="Script" uid="uid://b0hcnmd3pdphw" path="res://assets/scenes/time_ui/time_ui.gd" id="1_yqxdc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yqxdc"]
+font = ExtResource("1_ddso5")
+font_size = 72
+font_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+outline_size = 8
+outline_color = Color(0.86754787, 0.86754787, 0.8675479, 1)
+
+[node name="TimeUi" type="Control" unique_id=1290086711]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yqxdc")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2065481915]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Label" type="Label" parent="MarginContainer" unique_id=1866059646]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "12:00 AM"
+label_settings = SubResource("LabelSettings_yqxdc")

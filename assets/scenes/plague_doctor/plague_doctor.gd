@@ -4,6 +4,9 @@ signal inventory_changed(item_count: int);
 
 var heading := Vector3.FORWARD;
 var item_count := 0;
+var type := Character.DOCTOR;
+var can_interact := true;
+var interaction_target : Node3D = null;
 @export var walk_speed := 8;
 @export var rotate_speed := 3*PI;
 @export var camera_node : Camera3D = null;
@@ -52,3 +55,17 @@ func _on_interaction_area_body_entered(body: Node3D) -> void:
 
 func _on_interaction_area_body_exited(body: Node3D) -> void:
 	if(body.get("type") == Character.PATIENT): body.hide_info_button(self);
+
+func try_interact(object) -> bool:
+	if(can_interact):
+		can_interact = false;
+		interaction_target = object;
+		print("Interacting with %s!" % object);
+		return true;
+	else:
+		return false;
+
+func try_clear_interaction(object) -> void:
+	if(interaction_target == object):
+		interaction_target = null;
+		can_interact = true;

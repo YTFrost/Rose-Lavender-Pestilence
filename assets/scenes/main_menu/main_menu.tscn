@@ -132,7 +132,7 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "Made by Frost
-Demo release v3.0.0"
+Demo release v4.0.0"
 horizontal_alignment = 2
 
 [node name="QuitConfirmationBox" type="PanelContainer" parent="." unique_id=1725018893]

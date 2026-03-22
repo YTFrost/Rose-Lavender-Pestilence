@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bj3pll2af24y0"]
+
+[ext_resource type="Texture2D" uid="uid://b4sxbqnqiue0a" path="res://assets/textures/ui/interaction_indicator/interaction_indicator_empty.png" id="1_bgg5x"]
+[ext_resource type="Texture2D" uid="uid://ctfcpsdhd8x06" path="res://assets/textures/ui/interaction_indicator/interaction_indicator_full.png" id="2_t8kle"]
+
+[node name="InteractionIndicator" type="TextureProgressBar" unique_id=1677886497]
+offset_right = 40.0
+offset_bottom = 40.0
+fill_mode = 4
+texture_under = ExtResource("1_bgg5x")
+texture_progress = ExtResource("2_t8kle")

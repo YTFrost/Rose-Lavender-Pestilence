@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="128"
+   height="128"
+   viewBox="0 0 128 128"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   sodipodi:docname="interaction_indicator_empty (Copy).svg"
+   inkscape:export-filename="sleep.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.7068931"
+     inkscape:cx="60.955491"
+     inkscape:cy="76.102007"
+     inkscape:window-width="1366"
+     inkscape:window-height="708"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <inkscape:path-effect
+       effect="taper_stroke"
+       start_shape="center | center"
+       end_shape="center | center"
+       id="path-effect11"
+       is_visible="true"
+       lpeversion="1"
+       stroke_width="5"
+       subpath="1"
+       attach_start="0.4244404"
+       end_offset="0.22696933"
+       start_smoothing="0.5"
+       end_smoothing="0.5"
+       jointype="extrapolated"
+       miter_limit="100" />
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask2">
+      <circle
+         style="fill:#ffffff;fill-rule:evenodd;stroke-width:28.9261;stroke-linecap:square;stroke-miterlimit:86;paint-order:stroke fill markers"
+         id="circle2"
+         cx="64"
+         cy="64"
+         r="64" />
+    </mask>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="font-variation-settings:'opsz' 32, 'wght' 700;baseline-shift:baseline;display:inline;overflow:visible;opacity:1;fill:#ffffff;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers;enable-background:accumulate;stop-color:#000000;stop-opacity:1"
+       d="m 72.8638,21.58636 -27.427735,6.361328 a 2.5,2.5 0 0 0 -1.871093,3 2.5,2.5 0 0 0 3,1.871093 L 68.1138,27.820735 49.742706,57.283625 a 2.50025,2.50025 0 0 0 2.6875,3.757813 l 27.75,-6.435547 a 2.5,2.5 0 0 0 1.871094,-3 2.5,2.5 0 0 0 -3,-1.871094 L 57.180206,54.807063 75.549347,25.344172 A 2.50025,2.50025 0 0 0 72.8638,21.58636 Z"
+       id="path4-3" />
+    <path
+       style="font-variation-settings:'opsz' 32, 'wght' 700;baseline-shift:baseline;display:inline;overflow:visible;opacity:1;fill:#ffffff;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers;enable-background:accumulate;stop-color:#000000;stop-opacity:1"
+       d="m 64.980915,58.63239 a 2.5,2.5 0 0 0 -2.777344,2.1875 2.5,2.5 0 0 0 2.185547,2.777344 l 16.888672,2.007813 -21.462891,16.90039 a 2.50025,2.50025 0 0 0 1.251953,4.447266 l 23.150391,2.751953 a 2.5,2.5 0 0 0 2.777344,-2.1875 2.5,2.5 0 0 0 -2.1875,-2.777344 L 67.650837,82.70075 89.113727,65.800359 a 2.50025,2.50025 0 0 0 -1.251953,-4.447266 z"
+       id="path4" />
+    <path
+       style="font-variation-settings:'opsz' 32, 'wght' 700;baseline-shift:baseline;display:inline;overflow:visible;opacity:1;fill:#ffffff;stroke:#000000;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers;enable-background:accumulate;stop-color:#000000;stop-opacity:1"
+       d="m 57.423262,79.655309 -16.009766,2.421875 a 2.5,2.5 0 0 0 -2.097656,2.845703 2.5,2.5 0 0 0 2.845703,2.097657 L 52.204512,85.501012 41.87834,99.508823 a 2.50025,2.50025 0 0 0 2.384765,3.955077 l 16.199219,-2.45117 A 2.5,2.5 0 0 0 62.55998,98.167028 2.5,2.5 0 0 0 59.714277,96.069372 L 49.483809,97.6182 59.808027,83.610387 a 2.50025,2.50025 0 0 0 -2.384765,-3.955078 z"
+       id="path3" />
+  </g>
+</svg>

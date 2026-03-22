@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c7ct5nhipdqne"]
 
 [ext_resource type="PackedScene" uid="uid://bj3hma1vasukn" path="res://assets/models/plague_doctor/plague_doctor.gltf" id="1_km6cf"]
+[ext_resource type="PackedScene" uid="uid://bj3pll2af24y0" path="res://assets/scenes/interaction_indicator/interaction_indicator.tscn" id="2_54c0b"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_km6cf"]
 radius = 0.4
@@ -12,10 +13,10 @@ radius = 4.0
 
 [node name="PlagueDoctor" unique_id=1631135493 instance=ExtResource("1_km6cf")]
 
-[node name="armature" parent="." index="0" unique_id=1416026914]
+[node name="armature" parent="." index="0" unique_id=1338459723]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="Skeleton3D" parent="armature" index="0" unique_id=863516518]
+[node name="Skeleton3D" parent="armature" index="0" unique_id=1335802556]
 bones/1/position = Vector3(0.03125, 0.046875, 0)
 bones/1/rotation = Quaternion(0, 0, 0.043619387, 0.99904823)
 bones/2/rotation = Quaternion(0.8342429, -0.20988506, 0.039809205, -0.5083329)
@@ -38,7 +39,7 @@ bones/20/rotation = Quaternion(0.33885095, 0.08931286, 0.009380644, 0.9365443)
 bones/21/rotation = Quaternion(-0.04360901, -0.0028474138, 0.021628255, 0.99881047)
 bones/22/position = Vector3(0, 0.32875, 0)
 
-[node name="AnimationPlayer" parent="." index="1" unique_id=1376694520]
+[node name="AnimationPlayer" parent="." index="1" unique_id=18021734]
 playback_auto_capture_ease_type = 3
 playback_default_blend_time = 0.5
 
@@ -69,6 +70,8 @@ omni_attenuation = 0.5
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea" index="0" unique_id=1601236965]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_km6cf")
+
+[node name="InteractionIndicator" parent="." index="7" unique_id=1753534985 instance=ExtResource("2_54c0b")]
 
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]
