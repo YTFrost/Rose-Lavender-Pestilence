@@ -8,12 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://c7ct5nhipdqne" path="res://assets/scenes/plague_doctor/plague_doctor.tscn" id="8_p5d64"]
 [ext_resource type="PackedScene" uid="uid://fepm1h0igofb" path="res://assets/scenes/male_character/male_character.tscn" id="9_p5d64"]
 
-[sub_resource type="Environment" id="Environment_6rsl6"]
-background_color = Color(1, 1, 1, 1)
-background_energy_multiplier = 0.0
-fog_enabled = true
-fog_light_color = Color(0, 0, 0, 1)
-
 [sub_resource type="Curve" id="Curve_xplbd"]
 _limits = [0.0, 1.0, 0.0, 6.0]
 _data = [Vector2(0.013605446, 1), 0.0, 0.0, 0, 0, Vector2(6, 0), 0.0, 0.0, 0, 0]
@@ -33,13 +27,9 @@ anchor_bottom = 0.9
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1186337627]
-transform = Transform3D(1, 0, 0, 0, 0.49999994, 0.8660254, 0, -0.8660254, 0.49999994, 0, 9, 5)
-environment = SubResource("Environment_6rsl6")
-
 [node name="PlagueDoctor" parent="." unique_id=924241198 node_paths=PackedStringArray("camera_node") instance=ExtResource("8_p5d64")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.046426892, 0)
-camera_node = NodePath("../Camera3D")
+camera_node = NodePath("")
 
 [node name="MainGameWorld" parent="." unique_id=2134989636 instance=ExtResource("6_vesw4")]
 

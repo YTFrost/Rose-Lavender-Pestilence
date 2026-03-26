@@ -9,11 +9,13 @@ var can_interact := true;
 var interaction_target : Node3D = null;
 @export var walk_speed := 8;
 @export var rotate_speed := 3*PI;
-@export var camera_node : Camera3D = null;
+@onready var camera_node : Camera3D = $Camera3D;
 @onready var animation_player : AnimationPlayer = $AnimationPlayer;
 
 func _process(delta: float) -> void:
-	if(camera_node != null): camera_node.position = position + Vector3(0, 9, 5);
+	if(camera_node != null):
+		camera_node.global_position = global_position + Vector3(0, 9, 5);
+		camera_node.rotation = -rotation;
 	var flat_heading = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down", 0.2);
 	heading = Vector3(flat_heading.x, 0.0, flat_heading.y);
 	if(flat_heading != Vector2.ZERO):
@@ -60,7 +62,6 @@ func try_interact(object) -> bool:
 	if(can_interact):
 		can_interact = false;
 		interaction_target = object;
-		print("Interacting with %s!" % object);
 		return true;
 	else:
 		return false;
@@ -69,3 +70,9 @@ func try_clear_interaction(object) -> void:
 	if(interaction_target == object):
 		interaction_target = null;
 		can_interact = true;
+
+func show_interaction(interaction: String) -> void:
+	var interaction_indicator_scene : PackedScene = load("res://assets/scenes/interaction_indicator/interaction_indicator.tscn");
+	var interaction_indicator_instance : TextureProgressBar = interaction_indicator_scene.instantiate();
+	add_child(interaction_indicator_instance);
+	interaction_indicator_instance

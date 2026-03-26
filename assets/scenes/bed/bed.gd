@@ -14,9 +14,12 @@ func _process(delta) -> void:
 func _on_interaction_area_body_entered(body):
 	if(body.get("type") == Character.DOCTOR):
 		doctor_entered_area.emit(body);
-		body.try_interact(self);
+		if( body.try_interact(self) ): interact(body);
 
 func _on_interaction_area_body_exited(body):
 	if(body.get("type") == Character.DOCTOR):
 		doctor_left_area.emit(body);
 		body.try_clear_interaction(self);
+
+func interact(doctor: CharacterBody3D):
+	doctor.show_interaction("sleep");
