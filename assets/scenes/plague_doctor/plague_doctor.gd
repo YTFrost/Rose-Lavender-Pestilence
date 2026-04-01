@@ -1,12 +1,12 @@
 extends CharacterBody3D
 
-signal inventory_changed(item_count: int);
-
 var heading := Vector3.FORWARD;
 var item_count := 0;
 var type := Character.DOCTOR;
+var interaction_lock := false;
 var can_interact := true;
 var interaction_target : Node3D = null;
+var interaction_progress : float = 0.0;
 @export var walk_speed := 8;
 @export var rotate_speed := 3*PI;
 @onready var camera_node : Camera3D = $Camera3D;
@@ -14,8 +14,8 @@ var interaction_target : Node3D = null;
 
 func _process(delta: float) -> void:
 	if(camera_node != null):
-		camera_node.global_position = global_position + Vector3(0, 9, 5);
-		camera_node.rotation = -rotation;
+		camera_node.global_position = global_position + Vector3(0, 10, 5.5);
+		$InteractionIndicator.position = camera_node.unproject_position(position + Vector3(0.0, 3.0, 0.0));
 	var flat_heading = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down", 0.2);
 	heading = Vector3(flat_heading.x, 0.0, flat_heading.y);
 	if(flat_heading != Vector2.ZERO):
@@ -30,38 +30,28 @@ func _process(delta: float) -> void:
 		animation_player.play("idle");
 	velocity.y = velocity.y - 98.1 * delta;
 	move_and_slide();
+	update_interaction(delta);
 
 func update_rotation(delta: float) -> void:
 	var rotation_vector := Vector3.FORWARD.rotated(Vector3.UP, rotation.y);
 	var heading_difference := heading.signed_angle_to(rotation_vector, Vector3.DOWN);
 	rotation.y += clampf(heading_difference, -rotate_speed*delta, rotate_speed*delta);
 
-func can_get_items() -> bool:
-	return $ActionTimer.is_stopped();
-
-func can_take_items() -> bool:
-	return item_count > 0 and $ActionTimer.is_stopped();
-
-func get_item() -> void:
-	item_count += 1;
-	$ActionTimer.start();
-	inventory_changed.emit(item_count);
-
-func take_item() -> void:
-	item_count -= 1;
-	$ActionTimer.start();
-	inventory_changed.emit(item_count);
-
-func _on_interaction_area_body_entered(body: Node3D) -> void:
-	if(body.get("type") == Character.PATIENT): body.show_info_button(self);
-
-func _on_interaction_area_body_exited(body: Node3D) -> void:
-	if(body.get("type") == Character.PATIENT): body.hide_info_button(self);
+func update_interaction(delta: float) -> void:
+	if(interaction_lock or interaction_target == null): return;
+	if(interaction_progress < interaction_target.interaction_time):
+		interaction_progress += delta;
+		$InteractionIndicator.set_progress(interaction_progress / interaction_target.interaction_time);
+	else:
+		interaction_target.interact(self);
+		$InteractionIndicator.hide();
 
 func try_interact(object) -> bool:
 	if(can_interact):
 		can_interact = false;
 		interaction_target = object;
+		$InteractionIndicator.visible = true;
+		$InteractionIndicator.show_interaction(interaction_target.interaction);
 		return true;
 	else:
 		return false;
@@ -70,9 +60,11 @@ func try_clear_interaction(object) -> void:
 	if(interaction_target == object):
 		interaction_target = null;
 		can_interact = true;
+		$InteractionIndicator.visible = false;
+		interaction_progress = 0.0;
 
-func show_interaction(interaction: String) -> void:
-	var interaction_indicator_scene : PackedScene = load("res://assets/scenes/interaction_indicator/interaction_indicator.tscn");
-	var interaction_indicator_instance : TextureProgressBar = interaction_indicator_scene.instantiate();
-	add_child(interaction_indicator_instance);
-	interaction_indicator_instance
+func reset_interaction() -> void:
+	interaction_target = null;
+	can_interact = true;
+	interaction_progress = 0.0;
+	$InteractionIndicator.visible = false;

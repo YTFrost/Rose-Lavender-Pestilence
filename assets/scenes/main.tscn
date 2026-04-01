@@ -1,22 +1,241 @@
 [gd_scene format=3 uid="uid://bc86kkxob6caj"]
 
 [ext_resource type="Script" uid="uid://0ueth0layh2l" path="res://assets/scenes/main.gd" id="1_sfrgt"]
+[ext_resource type="Script" uid="uid://bjea8k12pn528" path="res://assets/scripts/patient_schedule.gd" id="2_6rsl6"]
 [ext_resource type="PackedScene" uid="uid://wukfmipwg04s" path="res://assets/scenes/time_ui/time_ui.tscn" id="3_vesw4"]
+[ext_resource type="PackedScene" uid="uid://cd0rfwmhxah3w" path="res://assets/scenes/male_character_new/male_character_new.tscn" id="3_xplbd"]
 [ext_resource type="PackedScene" uid="uid://csym6cgx1dlae" path="res://assets/scenes/joystick/joystick.tscn" id="5_etxf0"]
+[ext_resource type="PackedScene" uid="uid://dmsocv4aqmke4" path="res://assets/scenes/bed/bed.tscn" id="6_6rsl6"]
 [ext_resource type="PackedScene" uid="uid://blqfabvubkg2d" path="res://assets/scenes/main_game_world/main_game_world.tscn" id="6_vesw4"]
-[ext_resource type="PackedScene" uid="uid://dvvfoypybm0hh" path="res://assets/scenes/bed/bed.tscn" id="7_xplbd"]
 [ext_resource type="PackedScene" uid="uid://c7ct5nhipdqne" path="res://assets/scenes/plague_doctor/plague_doctor.tscn" id="8_p5d64"]
-[ext_resource type="PackedScene" uid="uid://fepm1h0igofb" path="res://assets/scenes/male_character/male_character.tscn" id="9_p5d64"]
+
+[sub_resource type="Resource" id="Resource_p5d64"]
+script = ExtResource("2_6rsl6")
+entries = Dictionary[String, String]({
+"12:01": "Hello world!"
+})
+metadata/_custom_type_script = "uid://bjea8k12pn528"
 
 [sub_resource type="Curve" id="Curve_xplbd"]
 _limits = [0.0, 1.0, 0.0, 6.0]
 _data = [Vector2(0.013605446, 1), 0.0, 0.0, 0, 0, Vector2(6, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Animation" id="Animation_xplbd"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sunlight:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.425566e-07, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sunlight:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(3.1415925, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sunlight:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(2.8797936, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sunlight:light_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.96908027, 0.8781061, 0.7322988, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sunlight:light_energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Moonlight:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5707964, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Moonlight:light_energy")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_6rsl6"]
+resource_name = "skylight_cycle"
+length = 24.0
+step = 1.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sunlight:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0),
+"points": PackedFloat32Array(1.3089969, 0, 0, 0, 0, -1.308997, -6, 0, 6, 0, 1.3089972, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 12, 24)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sunlight:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0),
+"points": PackedFloat32Array(3.1415927, 0, 0, 2, -0.5235988, 0, -0.005555471, 0.08726647, 0, 0, -3.1415923, 0, 0, 2, 0.52359873),
+"times": PackedFloat32Array(0, 12, 24)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sunlight:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(2, 0, 0),
+"points": PackedFloat32Array(0, 0, 0, 2, 0, 0, -0.005555471, 0, 0, 0, 3.2626636e-07, 0, 0, 2, -5.4377725e-08),
+"times": PackedFloat32Array(0, 12, 24)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sunlight:light_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 6, 8, 17, 19, 24),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.9939373, 0.54788053, 0, 1), Color(0.9939373, 0.54788053, 0, 1), Color(0.96908027, 0.8781061, 0.7322988, 1), Color(0.96908027, 0.8781061, 0.7322988, 1), Color(0.9939373, 0.54788053, 0, 1), Color(0.9939373, 0.54788053, 0, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sunlight:light_energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 6, 7, 8, 17, 18, 19, 24),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.5, 1.0, 1.0, 1.5, 0.0, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Moonlight:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 12, 24),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.8325957, 6.2831855, 0), Vector3(-1.8325957, 3.1415927, 0), Vector3(-1.8325957, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Moonlight:light_energy")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 6, 7, 18, 19, 24),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 0.0, 0.0, 1.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p5d64"]
+_data = {
+&"RESET": SubResource("Animation_xplbd"),
+&"skylight_cycle": SubResource("Animation_6rsl6")
+}
+
 [node name="Main" type="Node3D" unique_id=1620234269]
 script = ExtResource("1_sfrgt")
+patient_schedule = SubResource("Resource_p5d64")
 
-[node name="TimeUi" parent="." unique_id=1290086711 instance=ExtResource("3_vesw4")]
+[node name="PlagueDoctor" parent="." unique_id=924241198 instance=ExtResource("8_p5d64")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.046426892, 0)
+
+[node name="MaleCharacterNew" parent="." unique_id=2080795160 instance=ExtResource("3_xplbd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.047686, -0.39697844, -6.5348334)
+
+[node name="InteractionTargetRound" parent="MaleCharacterNew" index="1" unique_id=1077732623 node_paths=PackedStringArray("player_character")]
+player_character = NodePath("../../PlagueDoctor")
+
+[node name="MainGameWorld" parent="." unique_id=2134989636 instance=ExtResource("6_vesw4")]
+
+[node name="Sunlight" type="DirectionalLight3D" parent="." unique_id=2058599549]
+transform = Transform3D(0.96592605, 0.25881875, 1.5099572e-07, 0.25881872, -0.9659262, -1.4255652e-07, 1.0895447e-07, 1.767797e-07, -0.9999994, 0, 0, 0)
+light_color = Color(0.96908027, 0.8781061, 0.7322988, 1)
+light_angular_distance = 0.5
+shadow_enabled = true
+shadow_opacity = 0.7
+shadow_blur = 4.0
+
+[node name="Moonlight" type="DirectionalLight3D" parent="." unique_id=875921989]
+transform = Transform3D(0.9999999, 0, 0, 0, -4.3711378e-08, 0.9999997, 0, -0.99999976, -4.3711374e-08, 0, 0, 0)
+rotation_order = 0
+light_color = Color(0.16685799, 0.3686005, 0.45168322, 1)
+light_bake_mode = 0
+shadow_enabled = true
+
+[node name="WorldTimer" type="Timer" parent="." unique_id=2018629126]
+autostart = true
+
+[node name="BedNew" parent="." unique_id=2144151749 node_paths=PackedStringArray("player_character") instance=ExtResource("6_6rsl6")]
+transform = Transform3D(0.00054989115, -0.10398891, 0.9945783, -0.0052596563, 0.9945644, 0.10399036, -0.99998605, -0.005288323, -4.3710514e-08, 9.251134, 0.9752407, -2.6138468e-05)
+player_character = NodePath("../PlagueDoctor")
+alpha_curve = SubResource("Curve_xplbd")
+interaction = "sleep"
+interaction_time = 4.0
 
 [node name="Joystick" parent="." unique_id=1428936762 instance=ExtResource("5_etxf0")]
 anchors_preset = -1
@@ -27,37 +246,15 @@ anchor_bottom = 0.9
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="PlagueDoctor" parent="." unique_id=924241198 node_paths=PackedStringArray("camera_node") instance=ExtResource("8_p5d64")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.046426892, 0)
-camera_node = NodePath("")
+[node name="TimeUi" parent="." unique_id=1290086711 instance=ExtResource("3_vesw4")]
 
-[node name="MainGameWorld" parent="." unique_id=2134989636 instance=ExtResource("6_vesw4")]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1530969470]
+libraries/ = SubResource("AnimationLibrary_p5d64")
 
-[node name="MaleCharacter" parent="." unique_id=2019152022 instance=ExtResource("9_p5d64")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7492571, 0.015878633, 1.3124499)
-temperature = 50.0
-moisture = 35.0
-
-[node name="Sunlight" type="DirectionalLight3D" parent="." unique_id=2058599549]
-transform = Transform3D(0.70710677, 0.579228, -0.4055798, 0, 0.57357645, 0.81915206, 0.70710677, -0.579228, 0.4055798, 0, 0, 0)
-light_color = Color(0.96908027, 0.8781061, 0.7322988, 1)
-shadow_enabled = true
-shadow_blur = 3.0
-
-[node name="Moonlight" type="DirectionalLight3D" parent="." unique_id=875921989]
-transform = Transform3D(0.17364822, 0.96984625, -0.1710101, 0, 0.17364822, 0.9848077, 0.9848077, -0.1710101, 0.030153705, 0, 0, 0)
-visible = false
-light_color = Color(0.16339943, 0.36320502, 0.4462511, 1)
-light_energy = 0.15
-shadow_enabled = true
-
-[node name="WorldTimer" type="Timer" parent="." unique_id=2018629126]
-autostart = true
-
-[node name="Bed" parent="." unique_id=2003784911 node_paths=PackedStringArray("player_character") instance=ExtResource("7_xplbd")]
-transform = Transform3D(-0.9606449, -0.10858027, 0.25567883, -0.10442432, 0.9940858, 0.029816357, -0.2574041, 0.0019438509, -0.96630186, 2.3039005, 0.25387752, -4.807809)
-player_character = NodePath("../PlagueDoctor")
-alpha_curve = SubResource("Curve_xplbd")
-
-[connection signal="patient_info_requested" from="MaleCharacter" to="." method="_on_male_character_patient_info_requested"]
 [connection signal="timeout" from="WorldTimer" to="." method="_on_world_timer_timeout"]
+[connection signal="doctor_went_to_sleep" from="BedNew" to="." method="_on_doctor_went_to_sleep"]
+[connection signal="doctor_woke_up" from="TimeUi" to="." method="_on_time_ui_doctor_woke_up"]
+
+[editable path="MaleCharacterNew"]
+[editable path="MaleCharacterNew/MaleCharacter"]
+[editable path="MaleCharacterNew/InteractionTargetRound"]

@@ -4,7 +4,7 @@ uniform vec2 plane_size = vec2(1.0, 1.0);
 uniform vec3 color = vec3(1.0, 1.0, 1.0);
 uniform float time_multiplier = 1.0;
 uniform float background_size = 1.0;
-uniform float outline_width = 4.0;
+uniform float outline_width = 0.1;
 uniform float alpha_mod = 1.0;
 
 bool is_outline(vec2 uv){
@@ -17,7 +17,9 @@ bool is_outline(vec2 uv){
 }
 
 bool is_background(vec2 uv){
-	return sin( background_size * PI * (uv.x + uv.y) + (TIME * time_multiplier) ) > 0.0;
+	return sin(
+		((uv.x * plane_size.x + uv.y * plane_size.y) / background_size ) * PI * 2.0 + TIME * time_multiplier
+	) > 0.0;
 }
 
 void fragment() {

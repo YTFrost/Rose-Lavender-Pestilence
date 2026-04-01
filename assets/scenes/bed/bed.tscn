@@ -1,58 +1,21 @@
-[gd_scene format=3 uid="uid://dvvfoypybm0hh"]
+[gd_scene format=3 uid="uid://dmsocv4aqmke4"]
 
-[ext_resource type="PackedScene" uid="uid://cnp4rsijtk2ja" path="res://assets/models/bed/bed.gltf" id="1_bnwk3"]
-[ext_resource type="Script" uid="uid://dpc4glyn23c4a" path="res://assets/scenes/bed/bed.gd" id="2_yp227"]
-[ext_resource type="Shader" uid="uid://cu6h7s5etfgh7" path="res://assets/scenes/bed/placeholder_shader.gdshader" id="3_yp227"]
+[ext_resource type="PackedScene" uid="uid://i4ec76i1pvss" path="res://assets/scenes/interaction_target/interaction_target.tscn" id="1_o7k46"]
+[ext_resource type="PackedScene" uid="uid://cnp4rsijtk2ja" path="res://assets/models/bed/bed.gltf" id="2_siirg"]
+[ext_resource type="Script" uid="uid://crgyx75lxovnc" path="res://assets/scenes/bed/bed.gd" id="2_vh1fj"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6i7mb"]
-render_priority = 0
-shader = ExtResource("3_yp227")
-shader_parameter/plane_size = Vector2(3.125, 4.125)
-shader_parameter/color = Vector3(1, 0.718, 0.012)
-shader_parameter/time_multiplier = 2.0
-shader_parameter/background_size = 5.0
-shader_parameter/outline_width = 0.05
-shader_parameter/alpha_mod = 1.0
+[sub_resource type="BoxShape3D" id="BoxShape3D_vh1fj"]
+size = Vector3(3, 1, 4)
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_yp227"]
-resource_name = "blockbench_export_mesh5"
-_surfaces = [{
-"aabb": AABB(-1.5625, 0, -2.0625, 3.125, 1e-05, 4.125),
-"attribute_data": PackedByteArray(255, 255, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 255, 255),
-"format": 34896613399,
-"index_count": 6,
-"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
-"material": SubResource("ShaderMaterial_6i7mb"),
-"name": "material_1",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray(255, 255, 0, 0, 255, 255, 255, 191, 0, 0, 0, 0, 0, 0, 255, 191, 255, 255, 0, 0, 0, 0, 255, 191, 0, 0, 0, 0, 255, 255, 255, 191, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127)
-}]
-blend_shape_mode = 0
+[node name="Bed" unique_id=2144151749 instance=ExtResource("1_o7k46")]
+script = ExtResource("2_vh1fj")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_yp227"]
-size = Vector3(1.1, 0.5, 2.1000001)
+[node name="BedModel" parent="." index="0" unique_id=1665112351 instance=ExtResource("2_siirg")]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_wvotl"]
-size = Vector3(3.125, 1, 4.125)
+[node name="TexturePlane" parent="InteractionArea" parent_id_path=PackedInt32Array(1595256599) index="0" unique_id=1527614838]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 0)
+color = Color(0.71555036, 0.640213, 9.62615e-07, 1)
+speed = 2.0
 
-[node name="Bed" unique_id=524380255 instance=ExtResource("1_bnwk3")]
-script = ExtResource("2_yp227")
-
-[node name="interact_plane" parent="." index="4" unique_id=139880889]
-mesh = SubResource("ArrayMesh_yp227")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="5" unique_id=1719346073]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1608706914]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-shape = SubResource("BoxShape3D_yp227")
-
-[node name="InteractionArea" type="Area3D" parent="." index="6" unique_id=1431891998]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea" index="0" unique_id=786029792]
-shape = SubResource("BoxShape3D_wvotl")
-
-[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
-[connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]
+[node name="CollisionShape3D" parent="InteractionArea" parent_id_path=PackedInt32Array(1595256599) index="1" unique_id=213660103]
+shape = SubResource("BoxShape3D_vh1fj")

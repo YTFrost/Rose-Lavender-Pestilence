@@ -1,9 +1,15 @@
 class_name TimeTracker
 
+signal hours_updated(value: int);
+signal minutes_updated(value: int);
+signal seconds_updated(value: int);
+
+
 var hours := 12:
 	set(value):
 		if(value < 24): hours = value;
 		else: hours = value % 24;
+		hours_updated.emit(hours);
 var minutes := 0:
 	set(value):
 		if(value < 60): minutes = value;
@@ -11,6 +17,7 @@ var minutes := 0:
 			minutes = value % 60;
 			@warning_ignore("integer_division")
 			hours += value / 60
+		minutes_updated.emit(minutes);
 var seconds := 0:
 	set(value):
 		if(value < 60): seconds = value;
@@ -18,6 +25,7 @@ var seconds := 0:
 			seconds = value % 60;
 			@warning_ignore("integer_division")
 			minutes += value / 60
+		seconds_updated.emit(seconds);
 var twenty_four_hour_format := true;
 
 func update() -> void:

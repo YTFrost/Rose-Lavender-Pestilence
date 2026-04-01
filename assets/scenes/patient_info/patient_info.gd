@@ -1,5 +1,7 @@
 extends Control
 
+signal closed();
+
 const TEMP_DESCS = [
 	"Freezing",		# [-100, -90]
 	"Cold",			# [-90, -70]
@@ -63,4 +65,6 @@ func _on_close_area_pressed() -> void:
 	$AnimationPlayer.play("slide_out", -1, 4.0);
 
 func _on_animation_player_animation_finished(anim_name: String):
-	if(anim_name == "slide_out"): queue_free();
+	if(anim_name == "slide_out"):
+		closed.emit();
+		queue_free();
