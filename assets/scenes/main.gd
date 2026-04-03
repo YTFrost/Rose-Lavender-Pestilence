@@ -11,7 +11,7 @@ func _ready() -> void:
 	world_time.minutes_updated.connect(_on_minute_updated);
 	update_skylight();
 
-func _on_male_character_patient_info_requested(patient: RigidBody3D) -> void:
+func _on_male_character_patient_info_requested(patient: RigidBody3D, _doctor: Node3D) -> void:
 	show_patient_info(patient);
 
 func show_patient_info(patient: RigidBody3D) -> void:
@@ -39,11 +39,14 @@ func _on_time_ui_doctor_woke_up() -> void:
 
 func _on_minute_updated(minute: int) -> void:
 	update_skylight();
+	update_patient_arrival();
 
 func spawn_patient(data: PatientData) -> void:
 	var patient_scene : PackedScene = load("res://assets/scenes/male_character_new/male_character_new.tscn");
 	var patient_instance := patient_scene.instantiate();
 	patient_instance.data = data;
+	#patient_instance.patient_info_requested.connect(_on_male_character_patient_info_requested);
+	patient_instance.get_node("InteractionTargetRound").player_character = $PlagueDoctor;
 	add_child(patient_instance);
 
 func update_skylight() -> void:
@@ -52,4 +55,5 @@ func update_skylight() -> void:
 	current_skylight_progress = new_skylight_progress;
 
 func update_patient_arrival() -> void:
-	pass;
+	var result = patient_schedule.get_arrival(world_time.hours, world_time.minutes);
+	if(result != null): spawn_patient(result);

@@ -2,8 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://y3md87lmkqen" path="res://assets/scenes/interaction_target_round/interaction_target_round.tscn" id="1_c7lg3"]
 [ext_resource type="Script" uid="uid://bx66r6lrbg844" path="res://assets/scenes/male_character_new/male_character_new.gd" id="1_f5yyo"]
+[ext_resource type="Script" uid="uid://02j1emuun6vc" path="res://assets/scripts/patient_data.gd" id="2_oxmvv"]
 [ext_resource type="PackedScene" uid="uid://bxa1848xcbok5" path="res://assets/models/male_character/male_character.gltf" id="3_oxmvv"]
 [ext_resource type="Script" uid="uid://c5s3cekbwps1o" path="res://assets/scenes/male_character_new/interaction_target_round.gd" id="4_f5yyo"]
+
+[sub_resource type="Resource" id="Resource_xkjp6"]
+script = ExtResource("2_oxmvv")
+metadata/_custom_type_script = "uid://02j1emuun6vc"
 
 [sub_resource type="Curve" id="Curve_f5yyo"]
 _limits = [0.0, 1.0, 0.0, 5.0]
@@ -23,6 +28,7 @@ axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 script = ExtResource("1_f5yyo")
+data = SubResource("Resource_xkjp6")
 
 [node name="MaleCharacter" parent="." unique_id=1781511369 instance=ExtResource("3_oxmvv")]
 

@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dki2tymtit72j"]
+
+[ext_resource type="PackedScene" uid="uid://rckrenvp3j1l" path="res://assets/models/panaceum/panaceum.gltf" id="1_makna"]
+[ext_resource type="Script" uid="uid://djk830hfxxn6n" path="res://assets/scenes/panaceum_source/interaction_target_round.gd" id="2_1ntn4"]
+[ext_resource type="Shader" uid="uid://b2m4s7v0a2sl3" path="res://assets/scenes/interaction_target_round/interaction_target_plane_round.gdshader" id="3_jx4t0"]
+[ext_resource type="Script" uid="uid://ym7f04ns4vl3" path="res://assets/scenes/interaction_target/texture_plane.gd" id="4_vgy7d"]
+
+[sub_resource type="Curve" id="Curve_1ntn4"]
+_limits = [0.0, 1.0, 0.0, 5.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(5, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6i7mb"]
+render_priority = 0
+shader = ExtResource("3_jx4t0")
+shader_parameter/plane_size = Vector2(2, 2)
+shader_parameter/color = Vector3(1, 1, 1)
+shader_parameter/time_multiplier = 2.0
+shader_parameter/background_size = 1.0
+shader_parameter/outline_width = 0.1
+shader_parameter/alpha_mod = 0.39215687
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_aamp1"]
+material = SubResource("ShaderMaterial_6i7mb")
+size = Vector2(1, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_b0fip"]
+radius = 1.0
+
+[node name="PanaceumSource" type="Node3D" unique_id=1947365882]
+
+[node name="Panaceum" parent="." unique_id=244686897 instance=ExtResource("1_makna")]
+
+[node name="InteractionTargetRound" type="Node3D" parent="." unique_id=1077732623 node_paths=PackedStringArray("rootNode")]
+script = ExtResource("2_1ntn4")
+rootNode = NodePath("..")
+alpha_curve = SubResource("Curve_1ntn4")
+interaction = "grab_panaceum"
+interaction_time = 1.0
+
+[node name="InteractionArea" type="Area3D" parent="InteractionTargetRound" unique_id=1951700963]
+
+[node name="TexturePlane" type="MeshInstance3D" parent="InteractionTargetRound/InteractionArea" unique_id=2055202155]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("PlaneMesh_aamp1")
+script = ExtResource("4_vgy7d")
+color = Color(1, 1, 1, 0.39215687)
+speed = 2.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionTargetRound/InteractionArea" unique_id=723574870]
+shape = SubResource("CylinderShape3D_b0fip")
+
+[connection signal="body_entered" from="InteractionTargetRound/InteractionArea" to="InteractionTargetRound" method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="InteractionTargetRound/InteractionArea" to="InteractionTargetRound" method="_on_interaction_area_body_exited"]

@@ -2,17 +2,23 @@
 
 [ext_resource type="Script" uid="uid://0ueth0layh2l" path="res://assets/scenes/main.gd" id="1_sfrgt"]
 [ext_resource type="Script" uid="uid://bjea8k12pn528" path="res://assets/scripts/patient_schedule.gd" id="2_6rsl6"]
+[ext_resource type="Script" uid="uid://02j1emuun6vc" path="res://assets/scripts/patient_data.gd" id="2_p5d64"]
 [ext_resource type="PackedScene" uid="uid://wukfmipwg04s" path="res://assets/scenes/time_ui/time_ui.tscn" id="3_vesw4"]
-[ext_resource type="PackedScene" uid="uid://cd0rfwmhxah3w" path="res://assets/scenes/male_character_new/male_character_new.tscn" id="3_xplbd"]
 [ext_resource type="PackedScene" uid="uid://csym6cgx1dlae" path="res://assets/scenes/joystick/joystick.tscn" id="5_etxf0"]
+[ext_resource type="PackedScene" uid="uid://dki2tymtit72j" path="res://assets/scenes/panaceum_source/panaceum_source.tscn" id="5_p5d64"]
 [ext_resource type="PackedScene" uid="uid://dmsocv4aqmke4" path="res://assets/scenes/bed/bed.tscn" id="6_6rsl6"]
 [ext_resource type="PackedScene" uid="uid://blqfabvubkg2d" path="res://assets/scenes/main_game_world/main_game_world.tscn" id="6_vesw4"]
 [ext_resource type="PackedScene" uid="uid://c7ct5nhipdqne" path="res://assets/scenes/plague_doctor/plague_doctor.tscn" id="8_p5d64"]
 
+[sub_resource type="Resource" id="Resource_48cn3"]
+script = ExtResource("2_p5d64")
+patient_surname = "Zimoch2"
+metadata/_custom_type_script = "uid://02j1emuun6vc"
+
 [sub_resource type="Resource" id="Resource_p5d64"]
 script = ExtResource("2_6rsl6")
-entries = Dictionary[String, String]({
-"12:01": "Hello world!"
+entries = Dictionary[String, ExtResource("2_p5d64")]({
+"12:01": SubResource("Resource_48cn3")
 })
 metadata/_custom_type_script = "uid://bjea8k12pn528"
 
@@ -202,12 +208,11 @@ script = ExtResource("1_sfrgt")
 patient_schedule = SubResource("Resource_p5d64")
 
 [node name="PlagueDoctor" parent="." unique_id=924241198 instance=ExtResource("8_p5d64")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.046426892, 0)
 
-[node name="MaleCharacterNew" parent="." unique_id=2080795160 instance=ExtResource("3_xplbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.047686, -0.39697844, -6.5348334)
+[node name="PanaceumSource" parent="." unique_id=1947365882 instance=ExtResource("5_p5d64")]
+transform = Transform3D(0.99459285, -0.10385148, 0, 0.10385148, 0.99459285, 0, 0, 0, 1, 6.2665715, 0.65352404, -6.429785)
 
-[node name="InteractionTargetRound" parent="MaleCharacterNew" index="1" unique_id=1077732623 node_paths=PackedStringArray("player_character")]
+[node name="InteractionTargetRound" parent="PanaceumSource" index="1" unique_id=1077732623 node_paths=PackedStringArray("player_character")]
 player_character = NodePath("../../PlagueDoctor")
 
 [node name="MainGameWorld" parent="." unique_id=2134989636 instance=ExtResource("6_vesw4")]
@@ -255,6 +260,4 @@ libraries/ = SubResource("AnimationLibrary_p5d64")
 [connection signal="doctor_went_to_sleep" from="BedNew" to="." method="_on_doctor_went_to_sleep"]
 [connection signal="doctor_woke_up" from="TimeUi" to="." method="_on_time_ui_doctor_woke_up"]
 
-[editable path="MaleCharacterNew"]
-[editable path="MaleCharacterNew/MaleCharacter"]
-[editable path="MaleCharacterNew/InteractionTargetRound"]
+[editable path="PanaceumSource"]

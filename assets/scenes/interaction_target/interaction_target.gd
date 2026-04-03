@@ -8,6 +8,7 @@ signal interaction_ended(target: Node3D, doctor: Node3D);
 @export var alpha_curve : Curve = null;
 @export var interaction : String;
 @export var interaction_time : float;
+@export var continuous : bool = false;
 
 @onready var texture_plane = $InteractionArea/TexturePlane;
 

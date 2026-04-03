@@ -25,18 +25,18 @@ func _enter_tree() -> void:
 	$AnimationPlayer.play("slide_in", -1, 4.0);
 
 func load_patient_info(patient: RigidBody3D) -> void:
-	$NotebookContainer/ContentMargins/VerticalContentSorter/Name.text = "%s %s" % [patient.patient_name, patient.patient_surname];
-	$NotebookContainer/ContentMargins/VerticalContentSorter/QualitiesSorter/TemperatureSorter/Temperature.text = get_temperature_desc(patient.temperature);
-	$NotebookContainer/ContentMargins/VerticalContentSorter/QualitiesSorter/MoistureSorter/Moisture.text = get_moisture_desc(patient.moisture);
-	$NotebookContainer/ContentMargins/VerticalContentSorter/HealthBar/Full.size.x = 500 * (patient.life/100);
-	$NotebookContainer/ContentMargins/VerticalContentSorter/BloodContainer/Blood.text = "%f" % patient.blood.level;
-	$NotebookContainer/ContentMargins/VerticalContentSorter/PhlegmContainer/Phlegm.text = "%f" % patient.phlegm.level;
-	$NotebookContainer/ContentMargins/VerticalContentSorter/GallContainer/Gall.text = "%f" % patient.gall.level;
-	$NotebookContainer/ContentMargins/VerticalContentSorter/MelancholyContainer/Melancholy.text = "%f" % patient.melancholy.level;
-	if(patient.afflictions.size() == 0): $NotebookContainer/ContentMargins/VerticalContentSorter/Afflictions.text = "None";
+	$NotebookContainer/ContentMargins/VerticalContentSorter/Name.text = "%s %s" % [patient.data.patient_name, patient.data.patient_surname];
+	$NotebookContainer/ContentMargins/VerticalContentSorter/QualitiesSorter/TemperatureSorter/Temperature.text = get_temperature_desc(patient.data.temperature);
+	$NotebookContainer/ContentMargins/VerticalContentSorter/QualitiesSorter/MoistureSorter/Moisture.text = get_moisture_desc(patient.data.moisture);
+	$NotebookContainer/ContentMargins/VerticalContentSorter/HealthBar/Full.size.x = 500 * (patient.data.life/100);
+	$NotebookContainer/ContentMargins/VerticalContentSorter/BloodContainer/Blood.text = "%f" % patient.data.blood.level;
+	$NotebookContainer/ContentMargins/VerticalContentSorter/PhlegmContainer/Phlegm.text = "%f" % patient.data.phlegm.level;
+	$NotebookContainer/ContentMargins/VerticalContentSorter/GallContainer/Gall.text = "%f" % patient.data.gall.level;
+	$NotebookContainer/ContentMargins/VerticalContentSorter/MelancholyContainer/Melancholy.text = "%f" % patient.data.melancholy.level;
+	if(patient.data.afflictions.size() == 0): $NotebookContainer/ContentMargins/VerticalContentSorter/Afflictions.text = "None";
 	else:
 		var affliction_names := [];
-		for affliction in patient.afflictions:
+		for affliction in patient.data.afflictions:
 			affliction_names.append(affliction.name);
 		$NotebookContainer/ContentMargins/VerticalContentSorter/Afflictions.text = ", ".join(affliction_names);
 

@@ -4,7 +4,7 @@ extends RigidBody3D
 ## Emitted when the child InteractionTargetRound emits doctor_inspected_patient.
 ## In practice, it means that whenever the doctor finishes waiting for an interaction
 ## to happen, InteractionTargetRound emits, then patient_info_requested is emitted.
-signal patient_info_requested(patient: RigidBody3D);
+signal patient_info_requested(patient: RigidBody3D, doctor: Node3D);
 ## TODO: Not re-implemented yet. Is supposed to emit, whenever the patient's info changes.
 signal patient_info_updated(patient: RigidBody3D);
 

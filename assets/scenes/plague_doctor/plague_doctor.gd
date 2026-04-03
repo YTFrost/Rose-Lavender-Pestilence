@@ -1,7 +1,6 @@
 extends CharacterBody3D
 
 var heading := Vector3.FORWARD;
-var item_count := 0;
 var type := Character.DOCTOR;
 var interaction_lock := false;
 var can_interact := true;
@@ -44,7 +43,7 @@ func update_interaction(delta: float) -> void:
 		$InteractionIndicator.set_progress(interaction_progress / interaction_target.interaction_time);
 	else:
 		interaction_target.interact(self);
-		$InteractionIndicator.hide();
+		if(interaction_target.continuous): $InteractionIndicator.hide();
 
 func try_interact(object) -> bool:
 	if(can_interact):
