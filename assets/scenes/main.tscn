@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dki2tymtit72j" path="res://assets/scenes/panaceum_source/panaceum_source.tscn" id="5_p5d64"]
 [ext_resource type="PackedScene" uid="uid://dmsocv4aqmke4" path="res://assets/scenes/bed/bed.tscn" id="6_6rsl6"]
 [ext_resource type="PackedScene" uid="uid://blqfabvubkg2d" path="res://assets/scenes/main_game_world/main_game_world.tscn" id="6_vesw4"]
+[ext_resource type="PackedScene" uid="uid://bg70f240uy6i3" path="res://assets/scenes/item_stash/item_stash.tscn" id="7_48cn3"]
 [ext_resource type="PackedScene" uid="uid://c7ct5nhipdqne" path="res://assets/scenes/plague_doctor/plague_doctor.tscn" id="8_p5d64"]
 
 [sub_resource type="Resource" id="Resource_48cn3"]
@@ -216,6 +217,9 @@ transform = Transform3D(0.99459285, -0.10385148, 0, 0.10385148, 0.99459285, 0, 0
 player_character = NodePath("../../PlagueDoctor")
 
 [node name="MainGameWorld" parent="." unique_id=2134989636 instance=ExtResource("6_vesw4")]
+
+[node name="ItemStash" parent="." unique_id=1565073509 instance=ExtResource("7_48cn3")]
+transform = Transform3D(0.99480104, -0.10183764, 0, 0.10183764, 0.99480104, 0, 0, 0, 1, 0, 0, -9.1957245)
 
 [node name="Sunlight" type="DirectionalLight3D" parent="." unique_id=2058599549]
 transform = Transform3D(0.96592605, 0.25881875, 1.5099572e-07, 0.25881872, -0.9659262, -1.4255652e-07, 1.0895447e-07, 1.767797e-07, -0.9999994, 0, 0, 0)

@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+var item_stack_height := 0.0;
+var max_items := 10;
+var items := [];
 var heading := Vector3.FORWARD;
 var type := Character.DOCTOR;
 var interaction_lock := false;
@@ -39,7 +42,7 @@ func update_rotation(delta: float) -> void:
 func update_interaction(delta: float) -> void:
 	if(interaction_lock or interaction_target == null): return;
 	if(interaction_progress < interaction_target.interaction_time):
-		interaction_progress += delta;
+		if(!interaction_target.impossible): interaction_progress += delta;
 		$InteractionIndicator.set_progress(interaction_progress / interaction_target.interaction_time);
 	else:
 		interaction_target.interact(self);
@@ -67,3 +70,12 @@ func reset_interaction() -> void:
 	can_interact = true;
 	interaction_progress = 0.0;
 	$InteractionIndicator.visible = false;
+
+func can_pick_up_item() -> bool:
+	return items.size() < max_items;
+
+func add_item(item: Node3D) -> void:
+	items.append(item);
+	$ItemStack.add_child(item);
+	item.position.y = item_stack_height;
+	item_stack_height += item.get_node("Top").position.y;

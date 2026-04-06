@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://duonxu5g0xiif"]
+
+[ext_resource type="PackedScene" uid="uid://rckrenvp3j1l" path="res://assets/models/panaceum/panaceum.gltf" id="1_ii27i"]
+
+[node name="Panaceum" unique_id=1904312668 instance=ExtResource("1_ii27i")]
+
+[node name="Top" type="Node3D" parent="." index="1" unique_id=1112926900]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
