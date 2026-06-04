@@ -11,14 +11,15 @@ func _ready() -> void:
 	world_time.minutes_updated.connect(_on_minute_updated);
 	update_skylight();
 
-func _on_male_character_patient_info_requested(patient: RigidBody3D, _doctor: Node3D) -> void:
-	show_patient_info(patient);
+func _on_male_character_patient_info_requested(patient: RigidBody3D, doctor: Node3D) -> void:
+	show_patient_info(patient, doctor);
 
-func show_patient_info(patient: RigidBody3D) -> void:
+func show_patient_info(patient: RigidBody3D, doctor: Node3D) -> void:
 	var patient_info_scene : PackedScene = load("res://assets/scenes/patient_info/patient_info.tscn");
 	var patient_info_instance : Control = patient_info_scene.instantiate();
 	add_child(patient_info_instance);	
 	patient_info_instance.load_patient_info(patient);
+	patient_info_instance.load_remedies(doctor);
 	patient.patient_info_updated.connect(patient_info_instance.load_patient_info);
 
 func _on_world_timer_timeout():
@@ -42,7 +43,7 @@ func _on_minute_updated(minute: int) -> void:
 	update_patient_arrival();
 
 func spawn_patient(data: PatientData) -> void:
-	var patient_scene : PackedScene = load("res://assets/scenes/male_character_new/male_character_new.tscn");
+	var patient_scene : PackedScene = load("res://assets/scenes/male_character/male_character.tscn");
 	var patient_instance := patient_scene.instantiate();
 	patient_instance.data = data;
 	#patient_instance.patient_info_requested.connect(_on_male_character_patient_info_requested);
@@ -57,3 +58,6 @@ func update_skylight() -> void:
 func update_patient_arrival() -> void:
 	var result = patient_schedule.get_arrival(world_time.hours, world_time.minutes);
 	if(result != null): spawn_patient(result);
+
+func _on_plague_doctor_picked_up_item(item: Node3D) -> void:
+	$InventoryDisplay.add_item(item);

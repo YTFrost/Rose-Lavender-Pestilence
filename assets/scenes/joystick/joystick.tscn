@@ -1,29 +1,8 @@
 [gd_scene format=3 uid="uid://csym6cgx1dlae"]
 
 [ext_resource type="Script" uid="uid://cc5yxgbml75sp" path="res://assets/scenes/joystick/joystick.gd" id="1_bfatb"]
-
-[sub_resource type="Gradient" id="Gradient_acv7l"]
-offsets = PackedFloat32Array(0, 0.5, 0.6, 0.7, 0.9, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.7859477, 0, 0, 0, 0.3137255, 0, 0, 0, 0.66893244, 0, 0, 0, 0.4862745, 0, 0, 0, 0)
-metadata/_snap_enabled = true
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_bfatb"]
-gradient = SubResource("Gradient_acv7l")
-width = 128
-height = 128
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
-
-[sub_resource type="Gradient" id="Gradient_7pvpf"]
-offsets = PackedFloat32Array(0, 0.8549223, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.43975902, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_noikp"]
-gradient = SubResource("Gradient_7pvpf")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
+[ext_resource type="Texture2D" uid="uid://bg65y31rrtu5b" path="res://assets/textures/ui/joystick/joystick.png" id="2_noikp"]
+[ext_resource type="Texture2D" uid="uid://b0g80t7q0h6m" path="res://assets/textures/ui/joystick/joystick_handle.png" id="3_nnq7e"]
 
 [node name="Joystick" type="AspectRatioContainer" unique_id=538569262]
 anchors_preset = 15
@@ -35,14 +14,18 @@ alignment_horizontal = 2
 script = ExtResource("1_bfatb")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1640108470]
+texture_filter = 2
 layout_mode = 2
-texture = SubResource("GradientTexture2D_bfatb")
+mouse_behavior_recursive = 2
+mouse_default_cursor_shape = 2
+texture = ExtResource("2_noikp")
 
 [node name="JoystickContainer" type="Control" parent="." unique_id=526678467]
 layout_mode = 2
 mouse_filter = 1
 
 [node name="Joystick" type="TextureRect" parent="JoystickContainer" unique_id=832774306]
+texture_filter = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.4
@@ -52,4 +35,4 @@ anchor_bottom = 0.6
 size_flags_horizontal = 4
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.37
-texture = SubResource("GradientTexture2D_noikp")
+texture = ExtResource("3_nnq7e")

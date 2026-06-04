@@ -1,0 +1,68 @@
+[gd_resource type="AnimationNodeStateMachine" format=3 uid="uid://crfdgi1g4mdba"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w4w62"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_am051"]
+animation = &"legs_run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pm3t5"]
+animation = &"legs_walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w4w62"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "legs_state == LegsState.RUNNING"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_axk6x"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "legs_state == LegsState.WALKING"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w6vs3"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "legs_state == LegsState.WALKING"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m8vy7"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "legs_state == LegsState.RUNNING"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xj5xo"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "legs_state == LegsState.IDLE"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uls3o"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "legs_state == LegsState.IDLE"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0w3gp"]
+xfade_time = 0.15
+priority = 0
+advance_mode = 2
+advance_expression = "legs_state == LegsState.IDLE"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nvgct"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "legs_state == LegsState.RUNNING"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d3f3a"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "legs_state == LegsState.WALKING"
+
+[resource]
+state_machine_type = 1
+states/Start/position = Vector2(262, 100)
+states/idle/node = SubResource("AnimationNodeAnimation_w4w62")
+states/idle/position = Vector2(725, 100)
+states/legs_run/node = SubResource("AnimationNodeAnimation_am051")
+states/legs_run/position = Vector2(579, 3)
+states/legs_walk/node = SubResource("AnimationNodeAnimation_pm3t5")
+states/legs_walk/position = Vector2(579, 199)
+transitions = ["Start", "legs_run", SubResource("AnimationNodeStateMachineTransition_w4w62"), "Start", "legs_walk", SubResource("AnimationNodeStateMachineTransition_axk6x"), "legs_run", "legs_walk", SubResource("AnimationNodeStateMachineTransition_w6vs3"), "legs_walk", "legs_run", SubResource("AnimationNodeStateMachineTransition_m8vy7"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_xj5xo"), "legs_run", "idle", SubResource("AnimationNodeStateMachineTransition_uls3o"), "legs_walk", "idle", SubResource("AnimationNodeStateMachineTransition_0w3gp"), "idle", "legs_run", SubResource("AnimationNodeStateMachineTransition_nvgct"), "idle", "legs_walk", SubResource("AnimationNodeStateMachineTransition_d3f3a")]
+graph_offset = Vector2(-81, -114)

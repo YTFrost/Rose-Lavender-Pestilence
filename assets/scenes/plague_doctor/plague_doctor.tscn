@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bj3hma1vasukn" path="res://assets/models/plague_doctor/plague_doctor.gltf" id="1_km6cf"]
 [ext_resource type="PackedScene" uid="uid://bj3pll2af24y0" path="res://assets/scenes/interaction_indicator/interaction_indicator.tscn" id="2_54c0b"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://crfdgi1g4mdba" path="res://temp_state_tree_1.tres" id="3_gm7eq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_km6cf"]
 radius = 0.4
@@ -10,37 +11,181 @@ height = 1.8
 [sub_resource type="Environment" id="Environment_54c0b"]
 background_energy_multiplier = 1.5
 
-[node name="PlagueDoctor" unique_id=1631135493 instance=ExtResource("1_km6cf")]
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_54c0b"]
+filter_enabled = true
+filters = ["armature/Skeleton3D:body", "armature/Skeleton3D:left_foot", "armature/Skeleton3D:left_hip", "armature/Skeleton3D:left_leg", "armature/Skeleton3D:left_shin", "armature/Skeleton3D:right_foot", "armature/Skeleton3D:right_hip", "armature/Skeleton3D:right_leg", "armature/Skeleton3D:right_shin", "item_stack_origin"]
+sync = true
 
-[node name="armature" parent="." index="0" unique_id=1338459723]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gm7eq"]
+animation = &"body_run"
 
-[node name="Skeleton3D" parent="armature" index="0" unique_id=1335802556]
-bones/1/position = Vector3(0.03125, 0.046875, 0)
-bones/1/rotation = Quaternion(0, 0, 0.043619387, 0.99904823)
-bones/2/rotation = Quaternion(0.8342429, -0.20988506, 0.039809205, -0.5083329)
-bones/3/rotation = Quaternion(-0.5037519, 0.18865225, -0.06949527, 0.8401279)
-bones/4/rotation = Quaternion(-0.4304224, 0.24225174, -0.250829, 0.83254755)
-bones/5/rotation = Quaternion(-0.23573467, -0.036686048, -0.068687685, 0.9686926)
-bones/6/rotation = Quaternion(-0.58963156, 0.3064712, -0.1641289, 0.7290211)
-bones/7/rotation = Quaternion(0.77177924, -0.17790267, 0.2662501, 0.54938006)
-bones/8/rotation = Quaternion(0.42727676, -0.31036723, 0.06625357, 0.8465916)
-bones/9/rotation = Quaternion(0.41159543, -0.54212165, -0.34536955, 0.64607537)
-bones/10/rotation = Quaternion(0.252684, 0.056018695, -0.20906462, 0.9430295)
-bones/11/rotation = Quaternion(0.15444651, -0.25851446, -0.537336, 0.78777325)
-bones/12/rotation = Quaternion(0, 0, -0.065403126, 0.99785894)
-bones/15/rotation = Quaternion(0.93001235, -0.023704585, -0.060956232, -0.36166206)
-bones/16/rotation = Quaternion(-0.36243808, 0, 0, 0.9320079)
-bones/17/rotation = Quaternion(-0.0028501293, -0.06527869, 0.046376124, 0.99678475)
-bones/18/rotation = Quaternion(0, 0, -0.7372773, 0.6755902)
-bones/19/rotation = Quaternion(0.95167506, -0.019667102, 0.062376074, 0.300062)
-bones/20/rotation = Quaternion(0.33885095, 0.08931286, 0.009380644, 0.9365443)
-bones/21/rotation = Quaternion(-0.04360901, -0.0028474138, 0.021628255, 0.99881047)
-bones/22/position = Vector3(0, 0.32875, 0)
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j2amt"]
+animation = &"body_walk"
 
-[node name="AnimationPlayer" parent="." index="1" unique_id=18021734]
-playback_auto_capture_ease_type = 3
-playback_default_blend_time = 0.5
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_thai5"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1ylhs"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "legs_state == LegsState.IDLE"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_libmu"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "legs_state == LegsState.IDLE"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_we1if"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "legs_state == LegsState.IDLE"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mne7d"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "legs_state == LegsState.WALKING"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_46fno"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "legs_state == LegsState.WALKING"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cst5a"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "legs_state == LegsState.WALKING"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0n75b"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "legs_state == LegsState.RUNNING"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7p7pj"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "legs_state == LegsState.RUNNING"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a8ixl"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "legs_state == LegsState.RUNNING"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_thai5"]
+states/body_run/node = SubResource("AnimationNodeAnimation_gm7eq")
+states/body_run/position = Vector2(530, -11)
+states/body_walk/node = SubResource("AnimationNodeAnimation_j2amt")
+states/body_walk/position = Vector2(530, 246)
+states/idle/node = SubResource("AnimationNodeAnimation_thai5")
+states/idle/position = Vector2(703, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_1ylhs"), "body_run", "idle", SubResource("AnimationNodeStateMachineTransition_libmu"), "body_walk", "idle", SubResource("AnimationNodeStateMachineTransition_we1if"), "Start", "body_walk", SubResource("AnimationNodeStateMachineTransition_mne7d"), "body_run", "body_walk", SubResource("AnimationNodeStateMachineTransition_46fno"), "idle", "body_walk", SubResource("AnimationNodeStateMachineTransition_cst5a"), "Start", "body_run", SubResource("AnimationNodeStateMachineTransition_0n75b"), "body_walk", "body_run", SubResource("AnimationNodeStateMachineTransition_7p7pj"), "idle", "body_run", SubResource("AnimationNodeStateMachineTransition_a8ixl")]
+graph_offset = Vector2(-78, -69)
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_gm7eq"]
+filter_enabled = true
+filters = ["armature/Skeleton3D:body", "armature/Skeleton3D:chest", "armature/Skeleton3D:left_arm", "armature/Skeleton3D:left_finger", "armature/Skeleton3D:left_forearm", "armature/Skeleton3D:left_hand", "armature/Skeleton3D:left_shoulder", "armature/Skeleton3D:right_arm", "armature/Skeleton3D:right_finger", "armature/Skeleton3D:right_forearm", "armature/Skeleton3D:right_hand", "armature/Skeleton3D:right_shoulder", "item_stack_origin"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3yw78"]
+animation = &"body_carry_heavy"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_cym0j"]
+graph_offset = Vector2(-682, -92)
+nodes/AnimationNodeStateMachine/node = SubResource("AnimationNodeStateMachine_thai5")
+nodes/AnimationNodeStateMachine/position = Vector2(-240, -60)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_gm7eq")
+nodes/Blend2/position = Vector2(100, 60)
+nodes/body_carry_heavy/node = SubResource("AnimationNodeAnimation_3yw78")
+nodes/body_carry_heavy/position = Vector2(-220, 180)
+node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"AnimationNodeStateMachine", &"Blend2", 1, &"body_carry_heavy"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_17rdd"]
+filter_enabled = true
+filters = ["armature/Skeleton3D:body", "armature/Skeleton3D:chest", "armature/Skeleton3D:head", "armature/Skeleton3D:right_arm", "armature/Skeleton3D:right_finger", "armature/Skeleton3D:right_forearm", "armature/Skeleton3D:right_hand", "armature/Skeleton3D:right_shoulder", "item_stack_origin"]
+sync = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2fj4b"]
+animation = &"body_carry_light"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_1ylhs"]
+graph_offset = Vector2(-543.5573, 42.631622)
+nodes/output/position = Vector2(360, 180)
+nodes/idle_state/node = SubResource("AnimationNodeStateMachine_thai5")
+nodes/idle_state/position = Vector2(-140, 0)
+nodes/blending/node = SubResource("AnimationNodeBlend2_17rdd")
+nodes/blending/position = Vector2(160, 160)
+nodes/light/node = SubResource("AnimationNodeAnimation_2fj4b")
+nodes/light/position = Vector2(-140, 280)
+node_connections = [&"output", 0, &"blending", &"blending", 0, &"idle_state", &"blending", 1, &"light"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l7mgk"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "body_state == BodyState.CARRY_LIGHT"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_inn8a"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "body_state == BodyState.CARRY_HEAVY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0upiy"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "body_state == BodyState.CARRY_LIGHT"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h0lw6"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "body_state == BodyState.CARRY_HEAVY"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_j2amt"]
+states/body_carry_heavy/node = SubResource("AnimationNodeBlendTree_cym0j")
+states/body_carry_heavy/position = Vector2(567, 198)
+states/body_carry_light/node = SubResource("AnimationNodeBlendTree_1ylhs")
+states/body_carry_light/position = Vector2(567, -10)
+transitions = ["Start", "body_carry_light", SubResource("AnimationNodeStateMachineTransition_l7mgk"), "body_carry_light", "body_carry_heavy", SubResource("AnimationNodeStateMachineTransition_inn8a"), "body_carry_heavy", "body_carry_light", SubResource("AnimationNodeStateMachineTransition_0upiy"), "Start", "body_carry_heavy", SubResource("AnimationNodeStateMachineTransition_h0lw6")]
+graph_offset = Vector2(-100, -65)
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2fj4b"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "body_state == BodyState.IDLE"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3yw78"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "body_state == BodyState.IDLE"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cym0j"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "body_state == BodyState.CARRY_LIGHT || body_state == BodyState.CARRY_HEAVY"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_17rdd"]
+xfade_time = 0.15
+advance_mode = 2
+advance_expression = "body_state == BodyState.CARRY_LIGHT || body_state == BodyState.CARRY_HEAVY"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gm7eq"]
+states/Carry/node = SubResource("AnimationNodeStateMachine_j2amt")
+states/Carry/position = Vector2(600, -6)
+states/End/position = Vector2(962, 100)
+states/Idle/node = SubResource("AnimationNodeStateMachine_thai5")
+states/Idle/position = Vector2(600, 201)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_2fj4b"), "Carry", "Idle", SubResource("AnimationNodeStateMachineTransition_3yw78"), "Start", "Carry", SubResource("AnimationNodeStateMachineTransition_cym0j"), "Idle", "Carry", SubResource("AnimationNodeStateMachineTransition_17rdd")]
+graph_offset = Vector2(-66, -114)
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_thai5"]
+nodes/output/position = Vector2(340, 160)
+nodes/BodyState/node = SubResource("AnimationNodeStateMachine_gm7eq")
+nodes/BodyState/position = Vector2(-200, 0)
+nodes/LegsState/node = ExtResource("3_gm7eq")
+nodes/LegsState/position = Vector2(-200, 240)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_54c0b")
+nodes/Add2/position = Vector2(100, 80)
+node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"BodyState", &"Add2", 1, &"LegsState"]
+
+[node name="PlagueDoctor" unique_id=1660842943 node_paths=PackedStringArray("camera_node", "interaction_indicator_node") instance=ExtResource("1_km6cf")]
+camera_node = NodePath("Camera3D")
+interaction_indicator_node = NodePath("InteractionIndicator")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2" unique_id=1147325841]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -59,5 +204,10 @@ visible = false
 wait_time = 0.25
 one_shot = true
 
-[node name="ItemStack" type="Node3D" parent="." index="6" unique_id=462571728]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.5)
+[node name="AnimationTree" type="AnimationTree" parent="." index="6" unique_id=360663301]
+tree_root = SubResource("AnimationNodeBlendTree_thai5")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")
+parameters/BodyState/Carry/body_carry_heavy/Blend2/blend_amount = 1.0
+parameters/BodyState/Carry/body_carry_light/blending/blend_amount = 1.0
+parameters/Add2/add_amount = 1.0

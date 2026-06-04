@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dki2tymtit72j" path="res://assets/scenes/panaceum_source/panaceum_source.tscn" id="5_p5d64"]
 [ext_resource type="PackedScene" uid="uid://dmsocv4aqmke4" path="res://assets/scenes/bed/bed.tscn" id="6_6rsl6"]
 [ext_resource type="PackedScene" uid="uid://blqfabvubkg2d" path="res://assets/scenes/main_game_world/main_game_world.tscn" id="6_vesw4"]
-[ext_resource type="PackedScene" uid="uid://bg70f240uy6i3" path="res://assets/scenes/item_stash/item_stash.tscn" id="7_48cn3"]
 [ext_resource type="PackedScene" uid="uid://c7ct5nhipdqne" path="res://assets/scenes/plague_doctor/plague_doctor.tscn" id="8_p5d64"]
+[ext_resource type="PackedScene" uid="uid://d0cx7wivaw1m7" path="res://assets/scenes/inventory_display/inventory_display.tscn" id="9_ov4sg"]
 
 [sub_resource type="Resource" id="Resource_48cn3"]
 script = ExtResource("2_p5d64")
@@ -208,7 +208,7 @@ _data = {
 script = ExtResource("1_sfrgt")
 patient_schedule = SubResource("Resource_p5d64")
 
-[node name="PlagueDoctor" parent="." unique_id=924241198 instance=ExtResource("8_p5d64")]
+[node name="PlagueDoctor" parent="." unique_id=1807536836 instance=ExtResource("8_p5d64")]
 
 [node name="PanaceumSource" parent="." unique_id=1947365882 instance=ExtResource("5_p5d64")]
 transform = Transform3D(0.99459285, -0.10385148, 0, 0.10385148, 0.99459285, 0, 0, 0, 1, 6.2665715, 0.65352404, -6.429785)
@@ -217,9 +217,6 @@ transform = Transform3D(0.99459285, -0.10385148, 0, 0.10385148, 0.99459285, 0, 0
 player_character = NodePath("../../PlagueDoctor")
 
 [node name="MainGameWorld" parent="." unique_id=2134989636 instance=ExtResource("6_vesw4")]
-
-[node name="ItemStash" parent="." unique_id=1565073509 instance=ExtResource("7_48cn3")]
-transform = Transform3D(0.99480104, -0.10183764, 0, 0.10183764, 0.99480104, 0, 0, 0, 1, 0, 0, -9.1957245)
 
 [node name="Sunlight" type="DirectionalLight3D" parent="." unique_id=2058599549]
 transform = Transform3D(0.96592605, 0.25881875, 1.5099572e-07, 0.25881872, -0.9659262, -1.4255652e-07, 1.0895447e-07, 1.767797e-07, -0.9999994, 0, 0, 0)
@@ -246,6 +243,11 @@ alpha_curve = SubResource("Curve_xplbd")
 interaction = "sleep"
 interaction_time = 4.0
 
+[node name="InventoryDisplay" parent="." unique_id=1494808598 instance=ExtResource("9_ov4sg")]
+anchors_preset = -1
+anchor_right = 0.1
+grow_horizontal = 1
+
 [node name="Joystick" parent="." unique_id=1428936762 instance=ExtResource("5_etxf0")]
 anchors_preset = -1
 anchor_left = 0.6
@@ -260,8 +262,11 @@ grow_vertical = 0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1530969470]
 libraries/ = SubResource("AnimationLibrary_p5d64")
 
+[connection signal="dropped_item" from="PlagueDoctor" to="InventoryDisplay" method="_on_plague_doctor_dropped_item"]
+[connection signal="picked_up_item" from="PlagueDoctor" to="." method="_on_plague_doctor_picked_up_item"]
 [connection signal="timeout" from="WorldTimer" to="." method="_on_world_timer_timeout"]
 [connection signal="doctor_went_to_sleep" from="BedNew" to="." method="_on_doctor_went_to_sleep"]
+[connection signal="inventory_mode_changed" from="InventoryDisplay" to="PlagueDoctor" method="_on_inventory_display_inventory_mode_changed"]
 [connection signal="doctor_woke_up" from="TimeUi" to="." method="_on_time_ui_doctor_woke_up"]
 
 [editable path="PanaceumSource"]

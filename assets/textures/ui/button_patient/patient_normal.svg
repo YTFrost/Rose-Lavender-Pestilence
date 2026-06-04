@@ -7,8 +7,8 @@
    viewBox="0 0 128 128"
    version="1.1"
    id="svg1"
-   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
-   sodipodi:docname="normal.svg"
+   inkscape:version="1.4.4 (dcaf3e7d9e, 2026-05-05)"
+   sodipodi:docname="patient_normal.svg"
    inkscape:export-filename="normal.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
@@ -26,9 +26,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="6.3671875"
-     inkscape:cx="64"
-     inkscape:cy="64"
+     inkscape:zoom="4.5022815"
+     inkscape:cx="55.305294"
+     inkscape:cy="48.75306"
      inkscape:window-width="1920"
      inkscape:window-height="1002"
      inkscape:window-x="0"
@@ -129,8 +129,8 @@
            d="m 80.791729,77.254115 c 2.486175,-8.045756 2.782536,-15.951025 2.366352,-22.157382 -0.406526,-6.062342 -1.376003,-9.969512 -1.376003,-9.969512 0,0 -0.286904,4.01759 -1.125096,9.87893 -0.888521,6.213279 -2.261515,13.135653 -4.640569,20.765953 -2.014691,6.491711 -4.628554,11.676357 -7.113216,16.086884 -1.079459,1.916592 -1.692385,4.143381 -2.003686,5.935952 -0.309532,1.782386 -0.302519,3.06703 -0.302519,3.06703 0,0 1.088097,-0.68183 2.465033,-1.812715 1.369592,-1.124853 3.073516,-2.741466 4.197469,-4.736154 2.576615,-4.573751 5.373277,-10.102419 7.532235,-17.058986 z"
            id="path10"
            sodipodi:nodetypes="cc"
-           inkscape:path-effect="#path-effect11"
-           inkscape:original-d="M 81.782078,45.127221 C 83.600597,75.820054 72.189139,90.70567 66.596992,100.86197" />
+           inkscape:original-d="M 81.782078,45.127221 C 83.600597,75.820054 72.189139,90.70567 66.596992,100.86197"
+           inkscape:path-effect="#path-effect11" />
       </g>
     </g>
   </g>

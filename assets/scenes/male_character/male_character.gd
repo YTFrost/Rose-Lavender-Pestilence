@@ -151,9 +151,14 @@ func _on_doctor_inspected_patient(_target: Node3D, doctor: Node3D) -> void:
 	var info_menu_scene : PackedScene = load("res://assets/scenes/patient_info/patient_info.tscn");
 	var info_menu_instance : Control = info_menu_scene.instantiate();
 	info_menu_instance.load_patient_info(self);
+	info_menu_instance.load_remedies(doctor);
 	add_child(info_menu_instance);
 	doctor.interaction_lock = true;
 
 func _on_interaction_ended(_target: Node3D, doctor: Node3D) -> void:
 	doctor.interaction_lock = false;
+
+func _on_interaction_target_round_interaction_began(target: Node3D, doctor: Node3D) -> void:
+	state = State.IDLE;
+
 #endregion

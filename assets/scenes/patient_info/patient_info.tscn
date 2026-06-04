@@ -243,6 +243,12 @@ autowrap_mode = 3
 [node name="HSeparator" type="HSeparator" parent="NotebookContainer/ContentMargins/VerticalContentSorter" unique_id=1900335267]
 layout_mode = 2
 
+[node name="RemediesContainer" type="HBoxContainer" parent="NotebookContainer/ContentMargins/VerticalContentSorter" unique_id=1534650405]
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="NotebookContainer/ContentMargins/VerticalContentSorter" unique_id=1514861308]
+layout_mode = 2
+
 [node name="Debug" type="Label" parent="NotebookContainer/ContentMargins/VerticalContentSorter" unique_id=1902242504]
 layout_mode = 2
 text = "Debug"

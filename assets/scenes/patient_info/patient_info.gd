@@ -1,6 +1,6 @@
 extends Control
 
-signal closed();
+signal closed;
 
 const TEMP_DESCS = [
 	"Freezing",		# [-100, -90]
@@ -19,6 +19,9 @@ const MOIST_DESCS = [
 	"Damp",			# [30, 70]
 	"Sweating",		# [70, 90]
 	"Soaked",		# [90, 100]
+];
+const REMEDIES = [
+	"panaceum",
 ];
 
 func _enter_tree() -> void:
@@ -39,6 +42,20 @@ func load_patient_info(patient: RigidBody3D) -> void:
 		for affliction in patient.data.afflictions:
 			affliction_names.append(affliction.name);
 		$NotebookContainer/ContentMargins/VerticalContentSorter/Afflictions.text = ", ".join(affliction_names);
+
+func load_remedies(doctor: Node3D) -> void:
+	var item_list : Array = doctor.items;
+	for item in item_list:
+		if(!REMEDIES.has(item.item_name)): continue;
+		var button_resource := load("res://assets/textures/ui/patient_info_notebook/remedy_button/remedy_button.tscn");
+		var normal_texture := load("res://assets/textures/ui/remedy_buttons/%s/%s_normal.png" % [item.item_name, item.item_name]);
+		var hover_texture := load("res://assets/textures/ui/remedy_buttons/%s/%s_hover.png" % [item.item_name, item.item_name]);
+		var pressed_texture := load("res://assets/textures/ui/remedy_buttons/%s/%s_pressed.png" % [item.item_name, item.item_name]);
+		var button : TextureButton = button_resource.instantiate();
+		button.texture_normal = normal_texture;
+		button.texture_hover = hover_texture;
+		button.texture_pressed = pressed_texture;
+		$NotebookContainer/ContentMargins/VerticalContentSorter/RemediesContainer.add_child(button);
 
 func get_temperature_desc(temperature: float) -> String:
 	if(90 < temperature): return TEMP_DESCS[6];

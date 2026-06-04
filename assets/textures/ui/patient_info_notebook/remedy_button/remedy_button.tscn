@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://m3qv1djkimvm"]
+
+[ext_resource type="Texture2D" uid="uid://bhqw4q3fm481y" path="res://assets/textures/ui/remedy_buttons/panaceum/panaceum_normal.svg" id="1_arvbr"]
+[ext_resource type="Texture2D" uid="uid://c1n61eg0lowbn" path="res://assets/textures/ui/remedy_buttons/panaceum/panaceum_pressed.svg" id="2_0eelr"]
+[ext_resource type="Texture2D" uid="uid://4j5mgg82cn7y" path="res://assets/textures/ui/remedy_buttons/panaceum/panaceum_hover.svg" id="3_lbqx5"]
+
+[node name="RemedyButton" type="TextureButton" unique_id=1377852771]
+texture_normal = ExtResource("1_arvbr")
+texture_pressed = ExtResource("2_0eelr")
+texture_hover = ExtResource("3_lbqx5")
