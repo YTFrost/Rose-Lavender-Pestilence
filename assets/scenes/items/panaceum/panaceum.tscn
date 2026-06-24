@@ -3,8 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://c56055epxjqwp" path="res://assets/scenes/items/item.tscn" id="1_hi8ky"]
 [ext_resource type="PackedScene" uid="uid://rckrenvp3j1l" path="res://assets/models/panaceum/panaceum.gltf" id="1_ii27i"]
 [ext_resource type="Texture2D" uid="uid://ye68qoc02u88" path="res://assets/textures/items/panaceum.png" id="2_76kss"]
+[ext_resource type="Script" uid="uid://bxajk2orjuys3" path="res://assets/scenes/items/panaceum/panaceum.gd" id="2_fveiy"]
 
 [node name="Item" unique_id=1689405094 instance=ExtResource("1_hi8ky")]
+script = ExtResource("2_fveiy")
 item_name = "panaceum"
 image = ExtResource("2_76kss")
 

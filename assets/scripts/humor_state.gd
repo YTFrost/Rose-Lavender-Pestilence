@@ -23,9 +23,9 @@ var state : HumorState.State = HumorState.State.NORMAL;
 var afflictions : Array[Affliction] = [];
 var affliction_count := 0;
 
-func _init(new_type: HumorState.Type, new_level: float = 25.0):
-	type = new_type;
-	level = new_level;
+func _init(_new_type: HumorState.Type = HumorState.Type.BLOOD, _new_level: float = 25.0):
+	type = _new_type;
+	level = _new_level;
 
 func update_state() -> void:
 	if(level < 18): state = HumorState.State.DEFICIENCY;

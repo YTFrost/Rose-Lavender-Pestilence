@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://0ueth0layh2l" path="res://assets/scenes/main.gd" id="1_sfrgt"]
 [ext_resource type="Script" uid="uid://bjea8k12pn528" path="res://assets/scripts/patient_schedule.gd" id="2_6rsl6"]
 [ext_resource type="Script" uid="uid://02j1emuun6vc" path="res://assets/scripts/patient_data.gd" id="2_p5d64"]
+[ext_resource type="Script" uid="uid://qhynrytdjtsu" path="res://assets/scripts/humor_state.gd" id="3_ov4sg"]
 [ext_resource type="PackedScene" uid="uid://wukfmipwg04s" path="res://assets/scenes/time_ui/time_ui.tscn" id="3_vesw4"]
 [ext_resource type="PackedScene" uid="uid://csym6cgx1dlae" path="res://assets/scenes/joystick/joystick.tscn" id="5_etxf0"]
 [ext_resource type="PackedScene" uid="uid://dki2tymtit72j" path="res://assets/scenes/panaceum_source/panaceum_source.tscn" id="5_p5d64"]
@@ -11,15 +12,41 @@
 [ext_resource type="PackedScene" uid="uid://c7ct5nhipdqne" path="res://assets/scenes/plague_doctor/plague_doctor.tscn" id="8_p5d64"]
 [ext_resource type="PackedScene" uid="uid://d0cx7wivaw1m7" path="res://assets/scenes/inventory_display/inventory_display.tscn" id="9_ov4sg"]
 
-[sub_resource type="Resource" id="Resource_48cn3"]
+[sub_resource type="Resource" id="Resource_ov4sg"]
+script = ExtResource("3_ov4sg")
+level = 35.0
+metadata/_custom_type_script = "uid://qhynrytdjtsu"
+
+[sub_resource type="Resource" id="Resource_ua5jh"]
+script = ExtResource("3_ov4sg")
+type = 1
+level = 15.0
+metadata/_custom_type_script = "uid://qhynrytdjtsu"
+
+[sub_resource type="Resource" id="Resource_ytb86"]
+script = ExtResource("3_ov4sg")
+type = 3
+level = 25.0
+metadata/_custom_type_script = "uid://qhynrytdjtsu"
+
+[sub_resource type="Resource" id="Resource_rin3v"]
+script = ExtResource("3_ov4sg")
+type = 2
+level = 25.0
+metadata/_custom_type_script = "uid://qhynrytdjtsu"
+
+[sub_resource type="Resource" id="Resource_ahyqc"]
 script = ExtResource("2_p5d64")
-patient_surname = "Zimoch2"
+blood = SubResource("Resource_ov4sg")
+gall = SubResource("Resource_ua5jh")
+phlegm = SubResource("Resource_rin3v")
+melancholy = SubResource("Resource_ytb86")
 metadata/_custom_type_script = "uid://02j1emuun6vc"
 
 [sub_resource type="Resource" id="Resource_p5d64"]
 script = ExtResource("2_6rsl6")
 entries = Dictionary[String, ExtResource("2_p5d64")]({
-"12:01": SubResource("Resource_48cn3")
+"12:01": SubResource("Resource_ahyqc")
 })
 metadata/_custom_type_script = "uid://bjea8k12pn528"
 
