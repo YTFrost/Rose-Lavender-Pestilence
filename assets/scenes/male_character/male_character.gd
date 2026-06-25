@@ -152,8 +152,8 @@ func _on_doctor_inspected_patient(_target: Node3D, doctor: Node3D) -> void:
 	var info_menu_instance : Control = info_menu_scene.instantiate();
 	info_menu_instance.patient = self;
 	info_menu_instance.doctor = doctor;
-	info_menu_instance.load_patient_info();
-	info_menu_instance.load_remedies();
+	info_menu_instance.reload_patient_info();
+	info_menu_instance.reload_remedies();
 	add_child(info_menu_instance);
 	doctor.interaction_lock = true;
 

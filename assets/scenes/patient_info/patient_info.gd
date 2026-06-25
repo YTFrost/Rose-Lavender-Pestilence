@@ -30,7 +30,7 @@ var doctor : Node3D;
 func _enter_tree() -> void:
 	$AnimationPlayer.play("slide_in", -1, 4.0);
 
-func load_patient_info() -> void:
+func reload_patient_info() -> void:
 	$NotebookContainer/ContentMargins/VerticalContentSorter/Name.text = "%s %s" % [patient.data.patient_name, patient.data.patient_surname];
 	$NotebookContainer/ContentMargins/VerticalContentSorter/QualitiesSorter/TemperatureSorter/Temperature.text = get_temperature_desc(patient.data.temperature);
 	$NotebookContainer/ContentMargins/VerticalContentSorter/QualitiesSorter/MoistureSorter/Moisture.text = get_moisture_desc(patient.data.moisture);
@@ -46,7 +46,10 @@ func load_patient_info() -> void:
 			affliction_names.append(affliction.name);
 		$NotebookContainer/ContentMargins/VerticalContentSorter/Afflictions.text = ", ".join(affliction_names);
 
-func load_remedies() -> void:
+func reload_remedies() -> void:
+	var remedies_container := $NotebookContainer/ContentMargins/VerticalContentSorter/RemediesContainer;
+	for child in remedies_container.get_children():
+		child.queue_free();
 	var item_list : Array = doctor.items;
 	var remedy_list : Array;
 	var button_resource := load("res://assets/scenes/patient_info/remedy_button/remedy_button.tscn");
@@ -62,7 +65,10 @@ func load_remedies() -> void:
 		button.on_click = item.on_apply_remedy;
 		button.doctor = doctor;
 		button.patient = patient;
-		$NotebookContainer/ContentMargins/VerticalContentSorter/RemediesContainer.add_child(button);
+		button.item_name = item.item_name;
+		button.remedy_used.connect(reload_remedies);
+		button.remedy_used.connect(reload_patient_info);
+		remedies_container.add_child(button);
 		remedy_list.append(item.item_name);
 
 func get_temperature_desc(temperature: float) -> String:
