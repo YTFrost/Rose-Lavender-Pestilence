@@ -1,3 +1,4 @@
+@tool
 class_name PatientData extends Resource
 
 ## The patient's name.

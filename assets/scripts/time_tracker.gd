@@ -1,4 +1,4 @@
-class_name TimeTracker
+class_name TimeTracker extends Node
 
 signal hours_updated(value: int);
 signal minutes_updated(value: int);

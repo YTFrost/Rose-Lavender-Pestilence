@@ -28,10 +28,10 @@ func interact_grab_panaceum(doctor: CharacterBody3D) -> void:
 func interact_drop_panaceum(doctor: CharacterBody3D) -> void:
 	doctor.remove_item("panaceum");
 
-func interact_inventory_full(doctor: CharacterBody3D) -> void:
+func interact_inventory_full(_doctor: CharacterBody3D) -> void:
 	pass;
 
-func interact_no_panaceum(doctor: CharacterBody3D) -> void:
+func interact_no_panaceum(_doctor: CharacterBody3D) -> void:
 	pass;
 
 func set_interaction(new_interaction: String) -> void:

@@ -65,14 +65,99 @@ static var RECKLESSNESS = Affliction.new(
 	Affliction.State.DEFICIENCY,
 	"Patient acts recklessly and without forethought, causing danger to themselves and those around."
 );
+static var HEAD_PRESSURE = Affliction.new(
+	"Head pressure",
+	Affliction.State.EXCESS,
+	"Patient reports strong pressure inside their head. Movement, bending over and turning causes noticeable pain.",
+	func(patient: RigidBody3D):
+		patient.data.life -= 2;
+		patient.data.temperature += 3;
+		patient.data.moisture += 1;
+);
+static var RESTLESSNESS = Affliction.new(
+	"Restlessness",
+	Affliction.State.EXCESS,
+	"Patient is restless and reports difficulty sleeping, despite being tired.",
+	func(patient: RigidBody3D):
+		patient.data.life -= 1;
+		patient.data.temperature += 2;
+		patient.data.moisture += 2;
+);
+static var HEAVY_HEARTBEAT = Affliction.new(
+	"Heavy heartbeat",
+	Affliction.State.EXCESS,
+	"Patient's heartbeat is loud, strong and quick.",
+	func(patient: RigidBody3D):
+		patient.data.temperature += 3;
+		patient.data.moisture += 3;
+);
+static var DIZZINESS = Affliction.new(
+	"Dizziness",
+	Affliction.State.EXCESS,
+	"Patient reports a sensation of their surroundings moving, particularly when moving their head.",
+	func(patient: RigidBody3D):
+		patient.data.life -= 3;
+);
+static var FATIGUE = Affliction.new(
+	"Fatigue",
+	Affliction.State.DEFICIENCY,
+	"Patient is weak and fatigued, despite plenty of rest.",
+	func(patient: RigidBody3D):
+		patient.data.life -= 1;
+);
+static var WEAK_PULSE = Affliction.new(
+	"Weak Pulse",
+	Affliction.State.DEFICIENCY,
+	"Patient's pulse is faint, barely noticeable.",
+	func(patient: RigidBody3D):
+		patient.data.life -= 1;
+);
+static var FAINTING = Affliction.new(
+	"Fainting",
+	Affliction.State.DEFICIENCY,
+	"Patient keeps slipping into unconsciousness.",
+	func(patient: RigidBody3D):
+		patient.data.life -= 1;
+);
+static var COLD_SKIN = Affliction.new(
+	"Cold Skin",
+	Affliction.State.DEFICIENCY,
+	"Patient's skin is cold to the touch, as if dead.",
+	func(patient: RigidBody3D):
+		patient.data.life -= 1;
+);
+static var SHORTNESS_OF_BREATH = Affliction.new(
+	"Shortness of Breath",
+	Affliction.State.DEFICIENCY,
+	"Patient's breath is shallow and weak.",
+	func(patient: RigidBody3D):
+		patient.data.life -= 1;
+);
 static var affliction_map : Dictionary[HumorState.Type, Dictionary] = {
 	HumorState.Type.BLOOD: {
-		Affliction.State.DEFICIENCY: [ Affliction.PALE_SKIN ],
-		Affliction.State.EXCESS: [ Affliction.FLUSHED_CHEEKS, Affliction.NOSEBLEEDS ]
+		Affliction.State.DEFICIENCY: [
+			Affliction.PALE_SKIN,
+			Affliction.FATIGUE,
+			Affliction.WEAK_PULSE,
+			Affliction.FAINTING,
+			Affliction.COLD_SKIN,
+			Affliction.SHORTNESS_OF_BREATH
+		],
+		Affliction.State.EXCESS: [
+			Affliction.FLUSHED_CHEEKS,
+			Affliction.NOSEBLEEDS,
+			Affliction.HEAD_PRESSURE,
+			Affliction.RESTLESSNESS,
+			Affliction.HEAVY_HEARTBEAT,
+			Affliction.DIZZINESS
+		]
 	},
 	HumorState.Type.PHLEGM: {
 		Affliction.State.DEFICIENCY: [ Affliction.DRY_COUGH ],
-		Affliction.State.EXCESS: [ Affliction.SLEEPINESS, Affliction.POOR_DIGESTION ]
+		Affliction.State.EXCESS: [
+			Affliction.SLEEPINESS,
+			Affliction.POOR_DIGESTION,
+		]
 	},
 	HumorState.Type.GALL: {
 		Affliction.State.DEFICIENCY: [ Affliction.LOW_MOTIVATION ],
@@ -87,6 +172,7 @@ static var affliction_map : Dictionary[HumorState.Type, Dictionary] = {
 var name : String;
 var description : String;
 var type : Affliction.State;
+var effect : Callable;
 
 static func get_random(the_type: HumorState.Type, state: HumorState.State) -> Affliction:
 	var affliction_state;
@@ -105,7 +191,8 @@ static func get_all(the_type: HumorState.Type, state: HumorState.State) -> Array
 		HumorState.State.MILD_EXCESS, HumorState.State.EXCESS: affliction_state = Affliction.State.EXCESS;
 	return humor_afflictions[affliction_state];
 
-func _init(new_name: String, new_type: Affliction.State, new_description: String = ""):
+func _init(new_name: String, new_type: Affliction.State, new_description: String, new_effect: Callable = func(_patient: RigidBody3D): pass):
 	name = new_name;
 	type = new_type;
 	description = new_description;
+	effect = new_effect;

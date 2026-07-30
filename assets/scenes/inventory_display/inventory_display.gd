@@ -10,7 +10,7 @@ const DROP_HOVER_TEXTURE := preload("res://assets/textures/ui/inventory_button/d
 const DROP_PRESSED_TEXTURE := preload("res://assets/textures/ui/inventory_button/drop/drop_pressed.png");
 
 var inventory_slot_resource : PackedScene = preload("res://assets/scenes/inventory_display/inventory_slot/inventory_slot.tscn");
-var is_visible : bool = false;
+var is_shown : bool = false;
 var inventory_mode := InventoryMode.PICKUP;
 
 func fade_in() -> void:
@@ -34,7 +34,7 @@ func set_texture_drop() -> void:
 func add_item(item: Node3D) -> void:
 	if(!is_visible):
 		fade_in();
-		is_visible = true;
+		is_shown = true;
 	var new_slot = inventory_slot_resource.instantiate();
 	$CenterContainer/VBoxContainer2/VBoxContainer.add_child(new_slot);
 	new_slot.appear();
@@ -53,4 +53,4 @@ func _on_plague_doctor_dropped_item(index: int) -> void:
 	$CenterContainer/VBoxContainer2/VBoxContainer.get_child(index).queue_free();
 	if($CenterContainer/VBoxContainer2/VBoxContainer.get_children().size() == 1):
 		fade_out();
-		is_visible = false;
+		is_shown = false;

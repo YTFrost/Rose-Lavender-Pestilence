@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bc86kkxob6caj"]
 
 [ext_resource type="Script" uid="uid://0ueth0layh2l" path="res://assets/scenes/main.gd" id="1_sfrgt"]
-[ext_resource type="Script" uid="uid://bjea8k12pn528" path="res://assets/scripts/patient_schedule.gd" id="2_6rsl6"]
-[ext_resource type="Script" uid="uid://02j1emuun6vc" path="res://assets/scripts/patient_data.gd" id="2_p5d64"]
-[ext_resource type="Script" uid="uid://qhynrytdjtsu" path="res://assets/scripts/humor_state.gd" id="3_ov4sg"]
+[ext_resource type="Script" uid="uid://02j1emuun6vc" path="res://assets/scripts/patient_data.gd" id="2_48cn3"]
+[ext_resource type="Script" uid="uid://bjea8k12pn528" path="res://assets/scripts/patient_schedule.gd" id="3_ov4sg"]
+[ext_resource type="Script" uid="uid://qhynrytdjtsu" path="res://assets/scripts/humor_state.gd" id="3_ua5jh"]
 [ext_resource type="PackedScene" uid="uid://wukfmipwg04s" path="res://assets/scenes/time_ui/time_ui.tscn" id="3_vesw4"]
 [ext_resource type="PackedScene" uid="uid://csym6cgx1dlae" path="res://assets/scenes/joystick/joystick.tscn" id="5_etxf0"]
 [ext_resource type="PackedScene" uid="uid://dki2tymtit72j" path="res://assets/scenes/panaceum_source/panaceum_source.tscn" id="5_p5d64"]
@@ -11,49 +11,41 @@
 [ext_resource type="PackedScene" uid="uid://blqfabvubkg2d" path="res://assets/scenes/main_game_world/main_game_world.tscn" id="6_vesw4"]
 [ext_resource type="PackedScene" uid="uid://c7ct5nhipdqne" path="res://assets/scenes/plague_doctor/plague_doctor.tscn" id="8_p5d64"]
 [ext_resource type="PackedScene" uid="uid://d0cx7wivaw1m7" path="res://assets/scenes/inventory_display/inventory_display.tscn" id="9_ov4sg"]
+[ext_resource type="Script" uid="uid://c1ujytrj3p1hy" path="res://assets/scripts/time_tracker.gd" id="12_ua5jh"]
 
 [sub_resource type="Resource" id="Resource_ov4sg"]
-script = ExtResource("3_ov4sg")
+script = ExtResource("3_ua5jh")
 level = 35.0
-metadata/_custom_type_script = "uid://qhynrytdjtsu"
 
 [sub_resource type="Resource" id="Resource_ua5jh"]
-script = ExtResource("3_ov4sg")
+script = ExtResource("3_ua5jh")
 type = 1
+level = 25.0
+
+[sub_resource type="Resource" id="Resource_rin3v"]
+script = ExtResource("3_ua5jh")
+type = 3
+level = 25.0
+
+[sub_resource type="Resource" id="Resource_ahyqc"]
+script = ExtResource("3_ua5jh")
+type = 2
 level = 15.0
-metadata/_custom_type_script = "uid://qhynrytdjtsu"
+
+[sub_resource type="Resource" id="Resource_t7a27"]
+script = ExtResource("2_48cn3")
+blood = SubResource("Resource_ov4sg")
+gall = SubResource("Resource_ua5jh")
+phlegm = SubResource("Resource_ahyqc")
+melancholy = SubResource("Resource_rin3v")
+metadata/_custom_type_script = "uid://02j1emuun6vc"
 
 [sub_resource type="Resource" id="Resource_ytb86"]
 script = ExtResource("3_ov4sg")
-type = 3
-level = 25.0
-metadata/_custom_type_script = "uid://qhynrytdjtsu"
-
-[sub_resource type="Resource" id="Resource_rin3v"]
-script = ExtResource("3_ov4sg")
-type = 2
-level = 25.0
-metadata/_custom_type_script = "uid://qhynrytdjtsu"
-
-[sub_resource type="Resource" id="Resource_ahyqc"]
-script = ExtResource("2_p5d64")
-blood = SubResource("Resource_ov4sg")
-gall = SubResource("Resource_ua5jh")
-phlegm = SubResource("Resource_rin3v")
-melancholy = SubResource("Resource_ytb86")
-metadata/_custom_type_script = "uid://02j1emuun6vc"
-
-[sub_resource type="Resource" id="Resource_p5d64"]
-script = ExtResource("2_6rsl6")
-entries = Dictionary[String, ExtResource("2_p5d64")]({
-"12:01": SubResource("Resource_ahyqc")
+entries = Dictionary[String, ExtResource("2_48cn3")]({
+"12:01": SubResource("Resource_t7a27")
 })
 metadata/_custom_type_script = "uid://bjea8k12pn528"
-
-[sub_resource type="Curve" id="Curve_xplbd"]
-_limits = [0.0, 1.0, 0.0, 6.0]
-_data = [Vector2(0.013605446, 1), 0.0, 0.0, 0, 0, Vector2(6, 0), 0.0, 0.0, 0, 0]
-point_count = 2
 
 [sub_resource type="Animation" id="Animation_xplbd"]
 length = 0.001
@@ -231,9 +223,10 @@ _data = {
 &"skylight_cycle": SubResource("Animation_6rsl6")
 }
 
-[node name="Main" type="Node3D" unique_id=1620234269]
+[node name="Main" type="Node3D" unique_id=1620234269 node_paths=PackedStringArray("world_time")]
 script = ExtResource("1_sfrgt")
-patient_schedule = SubResource("Resource_p5d64")
+patient_schedule = SubResource("Resource_ytb86")
+world_time = NodePath("TimeTracker")
 
 [node name="PlagueDoctor" parent="." unique_id=1807536836 instance=ExtResource("8_p5d64")]
 
@@ -242,6 +235,13 @@ transform = Transform3D(0.99459285, -0.10385148, 0, 0.10385148, 0.99459285, 0, 0
 
 [node name="InteractionTargetRound" parent="PanaceumSource" index="1" unique_id=1077732623 node_paths=PackedStringArray("player_character")]
 player_character = NodePath("../../PlagueDoctor")
+
+[node name="Bed" parent="." unique_id=2144151749 node_paths=PackedStringArray("time_tracker", "world_timer", "player_character", "rootNode") instance=ExtResource("6_6rsl6")]
+transform = Transform3D(0.0005429975, -0.10385006, 0.99459285, -0.0052007264, 0.9945793, 0.103851475, -0.99998647, -0.005229001, -4.3709445e-08, 6.264882, 0.66970485, 0.3724856)
+time_tracker = NodePath("../TimeTracker")
+world_timer = NodePath("../WorldTimer")
+player_character = NodePath("../PlagueDoctor")
+rootNode = NodePath(".")
 
 [node name="MainGameWorld" parent="." unique_id=2134989636 instance=ExtResource("6_vesw4")]
 
@@ -263,13 +263,6 @@ shadow_enabled = true
 [node name="WorldTimer" type="Timer" parent="." unique_id=2018629126]
 autostart = true
 
-[node name="BedNew" parent="." unique_id=2144151749 node_paths=PackedStringArray("player_character") instance=ExtResource("6_6rsl6")]
-transform = Transform3D(0.00054989115, -0.10398891, 0.9945783, -0.0052596563, 0.9945644, 0.10399036, -0.99998605, -0.005288323, -4.3710514e-08, 9.251134, 0.9752407, -2.6138468e-05)
-player_character = NodePath("../PlagueDoctor")
-alpha_curve = SubResource("Curve_xplbd")
-interaction = "sleep"
-interaction_time = 4.0
-
 [node name="InventoryDisplay" parent="." unique_id=1494808598 instance=ExtResource("9_ov4sg")]
 anchors_preset = -1
 anchor_right = 0.1
@@ -289,10 +282,13 @@ grow_vertical = 0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1530969470]
 libraries/ = SubResource("AnimationLibrary_p5d64")
 
+[node name="TimeTracker" type="Node" parent="." unique_id=1455194644]
+script = ExtResource("12_ua5jh")
+metadata/_custom_type_script = "uid://c1ujytrj3p1hy"
+
 [connection signal="dropped_item" from="PlagueDoctor" to="InventoryDisplay" method="_on_plague_doctor_dropped_item"]
 [connection signal="picked_up_item" from="PlagueDoctor" to="." method="_on_plague_doctor_picked_up_item"]
 [connection signal="timeout" from="WorldTimer" to="." method="_on_world_timer_timeout"]
-[connection signal="doctor_went_to_sleep" from="BedNew" to="." method="_on_doctor_went_to_sleep"]
 [connection signal="inventory_mode_changed" from="InventoryDisplay" to="PlagueDoctor" method="_on_inventory_display_inventory_mode_changed"]
 [connection signal="doctor_woke_up" from="TimeUi" to="." method="_on_time_ui_doctor_woke_up"]
 

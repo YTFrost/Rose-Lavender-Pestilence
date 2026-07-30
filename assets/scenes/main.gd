@@ -2,7 +2,7 @@ extends Node3D
 
 @export var patient_schedule : PatientSchedule;
 
-var world_time := TimeTracker.new();
+@export var world_time : TimeTracker;
 var world_time_tween : Tween;
 var current_skylight_progress := 12.0 - 1.0/60.0;
 
@@ -26,7 +26,7 @@ func _on_world_timer_timeout():
 	world_time.update();
 	$TimeUi.set_time(world_time);
 
-func _on_doctor_went_to_sleep(bed: Variant, doctor: Variant) -> void:
+func _on_doctor_went_to_sleep(_bed: Variant, _doctor: Variant) -> void:
 	$TimeUi.start_sleep();
 	world_time_tween = get_tree().create_tween();
 	world_time_tween.tween_property($WorldTimer, "wait_time", 1.0/30.0, 10);
@@ -38,7 +38,7 @@ func _on_time_ui_doctor_woke_up() -> void:
 	$PlagueDoctor.reset_interaction();
 	$PlagueDoctor.interaction_lock = false;
 
-func _on_minute_updated(minute: int) -> void:
+func _on_minute_updated(_minute: int) -> void:
 	update_skylight();
 	update_patient_arrival();
 
@@ -46,7 +46,6 @@ func spawn_patient(data: PatientData) -> void:
 	var patient_scene : PackedScene = load("res://assets/scenes/male_character/male_character.tscn");
 	var patient_instance := patient_scene.instantiate();
 	patient_instance.data = data;
-	#patient_instance.patient_info_requested.connect(_on_male_character_patient_info_requested);
 	patient_instance.get_node("InteractionTargetRound").player_character = $PlagueDoctor;
 	add_child(patient_instance);
 

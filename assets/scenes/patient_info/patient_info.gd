@@ -1,3 +1,4 @@
+@tool
 extends Control
 
 signal closed;
@@ -29,6 +30,10 @@ var doctor : Node3D;
 
 func _enter_tree() -> void:
 	$AnimationPlayer.play("slide_in", -1, 4.0);
+	patient.connect("patient_info_updated", _on_patient_info_updated);
+
+func _ready() -> void:
+	resize_background();
 
 func reload_patient_info() -> void:
 	$NotebookContainer/ContentMargins/VerticalContentSorter/Name.text = "%s %s" % [patient.data.patient_name, patient.data.patient_surname];
@@ -99,3 +104,37 @@ func _on_animation_player_animation_finished(anim_name: String):
 	if(anim_name == "slide_out"):
 		closed.emit();
 		queue_free();
+
+func _on_resized() -> void:
+	resize_background();
+
+func resize_background() -> void:
+	const BACKGROUND_TEXTURE_WIDTH := 974.0;
+	const BACKGROUND_TEXTURE_HEIGHT := 1069.0;
+	const BACKGROUND_TEXTURE_RATIO := BACKGROUND_TEXTURE_HEIGHT / BACKGROUND_TEXTURE_WIDTH;
+	const LEFT_MARGIN := 120.0;
+	const TOP_MARGIN := 60.0;
+	const RIGHT_MARGIN := 20.0;
+	const BOTTOM_MARGIN := 90.0;
+	var container := $NotebookContainer;
+	var background := $NotebookContainer/ContainerBackground;
+	var margin_container := $NotebookContainer/ContentMargins;
+	if(container.size.y / container.size.x < BACKGROUND_TEXTURE_RATIO):
+		#The container is horizontal
+		background.scale.x = container.size.x /BACKGROUND_TEXTURE_WIDTH;
+		background.scale.y = container.size.x / BACKGROUND_TEXTURE_WIDTH;
+		margin_container.add_theme_constant_override("margin_left", int(LEFT_MARGIN * background.scale.x))
+		margin_container.add_theme_constant_override("margin_top", int(TOP_MARGIN * background.scale.x))
+		margin_container.add_theme_constant_override("margin_right", int(RIGHT_MARGIN * background.scale.x))
+		margin_container.add_theme_constant_override("margin_bottom", int(BOTTOM_MARGIN * background.scale.x))
+	else:
+		# The container is vertical
+		background.scale.x = container.size.y / BACKGROUND_TEXTURE_HEIGHT;
+		background.scale.y = container.size.y / BACKGROUND_TEXTURE_HEIGHT;
+		margin_container.add_theme_constant_override("margin_left", int(LEFT_MARGIN * background.scale.x))
+		margin_container.add_theme_constant_override("margin_top", int(TOP_MARGIN * background.scale.x))
+		margin_container.add_theme_constant_override("margin_right", int(RIGHT_MARGIN * background.scale.x))
+		margin_container.add_theme_constant_override("margin_bottom", int(BOTTOM_MARGIN * background.scale.x))
+
+func _on_patient_info_updated(_patient: RigidBody3D) -> void:
+	reload_patient_info();
