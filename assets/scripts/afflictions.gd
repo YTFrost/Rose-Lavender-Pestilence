@@ -1,5 +1,10 @@
 class_name Affliction
 
+const STEP = 1.0;
+const LIFE_STEP = STEP;
+const MOISTURE_STEP = STEP;
+const TEMPERATURE_STEP = STEP;
+
 enum State {
 	DEFICIENCY,
 	EXCESS
@@ -8,12 +13,16 @@ enum State {
 static var FLUSHED_CHEEKS = Affliction.new(
 	"Flushed cheeks", 
 	Affliction.State.EXCESS, 
-	"Patient's face is red, as if they are constantly ashamed or flustered."
+	"Patient's face is red, as if they are constantly ashamed or flustered.",
+	func(patient: RigidBody3D):
+		patient.data.moisture += MOISTURE_STEP;
 );
 static var NOSEBLEEDS = Affliction.new(
 	"Nosebleeds", 
 	Affliction.State.EXCESS, 
-	"Occasionally, blood pours out of the patient's nose in varying volume."
+	"Occasionally, blood pours out of the patient's nose in varying volume.",
+	func(patient: RigidBody3D):
+		patient.data.temperature += TEMPERATURE_STEP;
 );
 static var PALE_SKIN = Affliction.new(
 	"Pale skin",
@@ -23,27 +32,37 @@ static var PALE_SKIN = Affliction.new(
 static var POOR_DIGESTION = Affliction.new(
 	"Poor digestion",
 	Affliction.State.EXCESS,
-	"Patient complains about stomach aches and unpleasant rumbling after dining."
+	"Patient complains about stomach aches and unpleasant rumbling after dining.",
+	func(patient: RigidBody3D):
+		patient.data.temperature -= TEMPERATURE_STEP;
 );
 static var SLEEPINESS = Affliction.new(
 	"Sleepiness",
 	Affliction.State.EXCESS,
-	"Patient is visibly drowsy and sleepy, despite a sufficient resting."
+	"Patient is visibly drowsy and sleepy, despite a sufficient resting.",
+	func(patient: RigidBody3D):
+		patient.data.temperature -= TEMPERATURE_STEP;
 );
 static var DRY_COUGH = Affliction.new(
 	"Dry cough",
 	Affliction.State.DEFICIENCY,
-	"Patient has a sickly, dry cough."
+	"Patient has a sickly, dry cough.",
+	func(patient: RigidBody3D):
+		patient.data.life -= LIFE_STEP;
 );
 static var INTENSE_THIRST = Affliction.new(
 	"Intense thirst",
 	Affliction.State.EXCESS,
-	"Patient craves water and feels very dry, despite drinking a sufficient amount."
+	"Patient craves water and feels very dry, despite drinking a sufficient amount.",
+	func(patient: RigidBody3D):
+		patient.data.temperature += TEMPERATURE_STEP;
 );
 static var DRY_MOUTH = Affliction.new(
 	"Dry mouth",
 	Affliction.State.EXCESS,
-	"Patient complains of an unpleasantly dry mouth."
+	"Patient complains of an unpleasantly dry mouth.",
+	func(patient: RigidBody3D):
+		patient.data.temperature += TEMPERATURE_STEP;
 );
 static var LOW_MOTIVATION = Affliction.new(
 	"Low motivation",
@@ -53,85 +72,70 @@ static var LOW_MOTIVATION = Affliction.new(
 static var REDUCED_APPETITE = Affliction.new(
 	"Reduced appetite",
 	Affliction.State.EXCESS,
-	"Patient eats insufficiently, if anything at all."
+	"Patient eats insufficiently, if anything at all.",
+	func(patient: RigidBody3D):
+		patient.data.life -= LIFE_STEP;
 );
 static var BROODING = Affliction.new(
 	"Brooding",
 	Affliction.State.EXCESS,
-	"Patient is visibly upset and ponders endlessly about various problems."
+	"Patient is visibly upset and ponders endlessly about various problems.",
+	func(patient: RigidBody3D):
+		patient.data.moisture -= MOISTURE_STEP;
 );
 static var RECKLESSNESS = Affliction.new(
 	"Recklessness",
 	Affliction.State.DEFICIENCY,
-	"Patient acts recklessly and without forethought, causing danger to themselves and those around."
+	"Patient acts recklessly and without forethought, causing danger to themselves and those around.",
+	func(patient: RigidBody3D):
+		patient.data.life -= 2.0 * LIFE_STEP;
 );
 static var HEAD_PRESSURE = Affliction.new(
 	"Head pressure",
 	Affliction.State.EXCESS,
 	"Patient reports strong pressure inside their head. Movement, bending over and turning causes noticeable pain.",
 	func(patient: RigidBody3D):
-		patient.data.life -= 2;
-		patient.data.temperature += 3;
-		patient.data.moisture += 1;
+		patient.data.life -= LIFE_STEP;
 );
 static var RESTLESSNESS = Affliction.new(
 	"Restlessness",
 	Affliction.State.EXCESS,
 	"Patient is restless and reports difficulty sleeping, despite being tired.",
 	func(patient: RigidBody3D):
-		patient.data.life -= 1;
-		patient.data.temperature += 2;
-		patient.data.moisture += 2;
-);
-static var HEAVY_HEARTBEAT = Affliction.new(
-	"Heavy heartbeat",
-	Affliction.State.EXCESS,
-	"Patient's heartbeat is loud, strong and quick.",
-	func(patient: RigidBody3D):
-		patient.data.temperature += 3;
-		patient.data.moisture += 3;
+		patient.data.moisture += MOISTURE_STEP;
 );
 static var DIZZINESS = Affliction.new(
 	"Dizziness",
 	Affliction.State.EXCESS,
 	"Patient reports a sensation of their surroundings moving, particularly when moving their head.",
 	func(patient: RigidBody3D):
-		patient.data.life -= 3;
-);
-static var FATIGUE = Affliction.new(
-	"Fatigue",
-	Affliction.State.DEFICIENCY,
-	"Patient is weak and fatigued, despite plenty of rest.",
-	func(patient: RigidBody3D):
-		patient.data.life -= 1;
+		patient.data.temperature += TEMPERATURE_STEP;
 );
 static var WEAK_PULSE = Affliction.new(
 	"Weak Pulse",
 	Affliction.State.DEFICIENCY,
 	"Patient's pulse is faint, barely noticeable.",
 	func(patient: RigidBody3D):
-		patient.data.life -= 1;
+		patient.data.life -= LIFE_STEP;
 );
 static var FAINTING = Affliction.new(
 	"Fainting",
 	Affliction.State.DEFICIENCY,
 	"Patient keeps slipping into unconsciousness.",
 	func(patient: RigidBody3D):
-		patient.data.life -= 1;
+		patient.data.life -= 2.0 * LIFE_STEP;
 );
 static var COLD_SKIN = Affliction.new(
 	"Cold Skin",
 	Affliction.State.DEFICIENCY,
-	"Patient's skin is cold to the touch, as if dead.",
-	func(patient: RigidBody3D):
-		patient.data.life -= 1;
+	"Patient's skin is cold to the touch, as if dead."
 );
 static var SHORTNESS_OF_BREATH = Affliction.new(
 	"Shortness of Breath",
 	Affliction.State.DEFICIENCY,
 	"Patient's breath is shallow and weak.",
 	func(patient: RigidBody3D):
-		patient.data.life -= 1;
+		patient.data.life -= LIFE_STEP;
 );
 static var affliction_map : Dictionary[HumorState.Type, Dictionary] = {
 	HumorState.Type.BLOOD: {
